@@ -1,45 +1,71 @@
 <script>
-  import svelteLogo from './assets/svelte.svg'
-  import Counter from './lib/Counter.svelte'
+  import screen from './assets/blue-screen-1.svg'
 </script>
 
 <main>
-  <div>
-    <a href="https://vitejs.dev" target="_blank"> 
-      <img src="/vite.svg" class="logo" alt="Vite Logo" />
-    </a>
-    <a href="https://svelte.dev" target="_blank"> 
-      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
-    </a>
+  <div class="app-container">
+    <div class='screen-container'>
+      <img src={screen} alt='screen' />
+      <div class='screen-type-container'>
+        <div class='screen-type-title'>ENVIRON CTR</div>
+        *************************** <br />-
+        &nbsp;&nbsp;###################&nbsp;&nbsp; - <br /> -
+        &nbsp;&nbsp;###################&nbsp;&nbsp; - <br /> -
+        &nbsp;&nbsp;###################&nbsp;&nbsp; - <br /> -
+        &nbsp;&nbsp;92886599 | 95654085&nbsp;&nbsp; - <br /> -
+        &nbsp;&nbsp;###################&nbsp;&nbsp; - <br /> -
+        &nbsp;&nbsp;###################&nbsp;&nbsp; - <br /> -
+        &nbsp;&nbsp;###################&nbsp;&nbsp; - <br /> -
+        &nbsp;&nbsp;###################&nbsp;&nbsp; - <br />
+        ***************************
+        <div class='screen-type-title'>
+          24556&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DR&nbsp;&nbsp;&nbsp; 5
+        </div>
+        &nbsp;
+      </div>
+    </div>
   </div>
-  <h1>Vite + Svelte</h1>
-
-  <div class="card">
-    <Counter />
-  </div>
-
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank">SvelteKit</a>, the official Svelte app framework powered by Vite!
-  </p>
-
-  <p class="read-the-docs">
-    Click on the Vite and Svelte logos to learn more
-  </p>
 </main>
 
 <style>
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
+  main {
+    text-align: center;
   }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
+  .app-container {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
   }
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
+  .screen-container {
+    width: 100vmin;
+    position: absolute;
   }
-  .read-the-docs {
-    color: #888;
+  .screen-type-container {
+    position: absolute;
+    top: 17%;
+    left: 17.5%;
+    width: 65%;
+    height: 60%;
+    font-family: 'Rubik Mono One', Courier, monospace;
+    font-weight: 400;
+    font-size: 2.5vmin;
+    text-align: center;
+
+    color: #8fe6e2;
+
+    text-shadow: 0px 0px 9.12281px rgba(73, 193, 188, 0.8),
+      0px 0px 54.7368px #49c1bc;
+    filter: blur(0.07em);
+  }
+
+  .screen-type-title {
+    font-family: Rubik;
+    font-size: 7vmin;
+    font-weight: 600;
   }
 </style>
