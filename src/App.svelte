@@ -1,11 +1,12 @@
 <script>
   import screen from './assets/blue-screen-1.svg'
+  import Screen from './Components/Screen.svelte'
 </script>
 
 <main>
   <div class="app-container">
     <div class='screen-container'>
-      <img src={screen} alt='screen' />
+      <Screen />
       <div class='screen-type-container'>
         <div class='screen-type-title'>ENVIRON CTR</div>
         *************************** <br />-
@@ -68,4 +69,5 @@
     font-size: 7vmin;
     font-weight: 600;
   }
+
 </style>

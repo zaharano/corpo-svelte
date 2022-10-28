@@ -1,0 +1,35 @@
+#YellowLights * {
+  animation: blink 3s linear infinite;
+}
+
+.yellow-glows {
+  animation: blink2 3s linear infinite;
+}
+
+@keyframes blink {
+  0%,
+  71% {
+    fill: #64623f;
+  }
+  75% {
+    fill: #fffcac;
+  }
+  90%,
+  100% {
+    fill: #64623f;
+  }
+}
+
+@keyframes blink2 {
+  0%,
+  71% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+  90%,
+  100% {
+    opacity: 0;
+  }
+}
