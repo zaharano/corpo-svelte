@@ -1,5 +1,4 @@
 <script>
-  import screen from './assets/blue-screen-1.svg'
   import Screen from './Components/Screen.svelte'
 </script>
 
