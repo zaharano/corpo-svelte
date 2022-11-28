@@ -1,10 +1,12 @@
 <script>
   import Screen from './Components/Screen.svelte'
+  import TypeOut from './lib/TypeOut.svelte';
 </script>
 
 <main>
   <div class="app-container">
-    <div class='screen-container'>
+    <TypeOut />
+    <!-- <div class='screen-container'>
       <Screen />
       <div class='screen-type-container'>
         <div class='screen-type-title'>ENVIRON CTR</div>
@@ -23,7 +25,7 @@
         </div>
         &nbsp;
       </div>
-    </div>
+    </div> -->
   </div>
 </main>
 
@@ -41,7 +43,7 @@
     font-size: calc(10px + 2vmin);
     color: white;
   }
-  .screen-container {
+  /* .screen-container {
     width: 100vmin;
     position: absolute;
   }
@@ -57,7 +59,6 @@
     text-align: center;
 
     color: #8fe6e2;
-
     text-shadow: 0px 0px 9.12281px rgba(73, 193, 188, 0.8),
       0px 0px 54.7368px #49c1bc;
     filter: blur(0.07em);
@@ -67,6 +68,6 @@
     font-family: Rubik;
     font-size: 7vmin;
     font-weight: 600;
-  }
+  } */
 
 </style>

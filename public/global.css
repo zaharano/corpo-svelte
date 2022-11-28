@@ -6,6 +6,11 @@
   animation: blink2 3s linear infinite;
 }
 
+/* .burn {
+  color: white;
+  text-shadow: 0px 0px 9.12281px white;
+} */
+
 @keyframes blink {
   0%,
   71% {
@@ -31,5 +36,17 @@
   90%,
   100% {
     opacity: 0;
+  }
+}
+
+@keyframes burn {
+  0% {
+    color: hsl(177, 64%, 95%);
+    text-shadow: 0px 0px 9.12281px white, 0px 0px 54.7368px white;
+  }
+  to {
+    color: hsl(177, 64%, 73%);
+    text-shadow: 0px 0px 9.12281px rgba(73, 193, 188, 0.8),
+      0px 0px 54.7368px #49c1bc;
   }
 }
