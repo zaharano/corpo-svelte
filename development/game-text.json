@@ -1,0 +1,260 @@
+{
+  "init": {
+    "start": {
+      "title": "Welcome to my dumb game",
+      "text": "This is the opening text"
+    }
+  },
+  "pl": {
+    "start": {
+      "title": "Welcome to Megacorp!",
+      "text": "It's your first day in the mail room at Megacorp! Thanks to your shady Uncle Harrison, Director of South American Regional Logistics, you've been given your shot at the corporate world. The mail room isn't the best shot, seeing as it's the year 2085 and nobody sends mail any more, but it's the one you've been given so damnit you're gonna give it your all! Your manager Merle has been at Megacorp for 30 years, and is eager to show you the ropes.",
+      "opts": [
+        {
+          "text": "Get to work!",
+          "next": "toWork",
+          "effects": {
+            "perf": 10
+          }
+        },
+        {
+          "text": "Actually, this is just a temporary job to pay the bills while I pursue my true passion, game development.",
+          "next": "gameDev",
+          "effects": {
+            "years": 2
+          }
+        }
+      ]
+    },
+    "toWork": {
+      "title": "Getting to work",
+      "text": "Once you apply yourself a bit, you quickly get promoted twice in a year and become second-in-command in the mail room. But it would seem your progress is stalled: the natural promotion from here is your boss Merle's position. In the cafeteria people tell you \"Merle is the true heart of Megacorp\" which makes you pretty sure he's useless and just in your way.",
+      "opts": [
+        {
+          "text": "Take some time to ingratiate yourself to Merle",
+          "next": "merleApproves",
+          "effects": {
+            "perf": 10,
+            "years": 1
+          }
+        },
+        {
+          "text": "Spread vicious lies about Merle's work ethic.",
+          "next": "busted",
+          "effects": {
+            "perf": -10
+          }
+        }
+      ]
+    },
+    "busted": {
+      "title": "Busted",
+      "text": "While 30 years at a company doesn't necessarily buy you corporate advancement, turns out it does buy you a friend or two. Once people figure out what you're up to, you're quickly demoted to a mail room associate position from which you're very unlikely to ever emerge.",
+      "opts": [
+        {
+          "disabled": "gameDev",
+          "text": "Plenty of time to focus now on your true passion, game development.",
+          "next": "gameDev",
+          "effects": {
+            "years": 2
+          }
+        }
+      ]
+    },
+    "merleApproves": {
+      "title": "Merle likes you",
+      "text": "Merle comes up for a promotion out of the mail room after all these years, but he decides to recommend you get promoted over him instead. He likes you and sees great things ahead for you. What a sucker.",
+      "opts": [
+        {
+          "text": "Onward and upward...",
+          "next": "LeadsTo",
+          "effects": {
+            "perf": 10
+          }
+        }
+      ]
+    },
+    "gameDev": {
+      "title": "TitleText",
+      "text": "You spend the next two years coasting in the mail room, while working nose the grindstone every night and weekend at home on your passion project - an open-world, grim-dark version of that game with Cool Spot. First, you learn how to code and use modern game engines, then take a few skillshare courses to pick up some basic skills in digital art. You toil away and eventually get together something resembling the game you envisioned, with... reasonable compromises, here and there.",
+      "opts": [
+        {
+          "text": "Release this sucker and start raking in the accolades!",
+          "next": "gameSucks",
+          "effects": {
+            "perf": 10
+          }
+        },
+        {
+          "text": "Compromises? No. This is my magnum opus, my gift to humankind. It will be perfect or it will be nothing.",
+          "next": "gamePerfect",
+          "effects": {
+            "years": 10
+          }
+        }
+      ]
+    },
+    "gameSucks": {
+      "title": "Your game isn't good",
+      "text": "You sell 124 copies of your game but most of those sales are probably down to the excellent cover artwork you commissioned from an art student for one-hundred XposureTokens. You've wasted two years of your life. At least you've become good friends with your manager in the mail room, Merle. He even played your game start to finish, and thought it was \"pretty ok.\"",
+      "opts": [
+        {
+          "text": "OptionOne",
+          "next": "LeadsTo",
+          "effects": {
+            "perf": 10
+          }
+        },
+        {
+          "text": "OptionTwe",
+          "next": "LeadsTo",
+          "effects": {
+            "perf": 10
+          }
+        }
+      ]
+    },
+    "gamePerfect": {
+      "title": "Your game is a masterpiece",
+      "text": "After a decade of refinement you release what you can confidently state is the best possible version of your game. It's really quite good, but since it's now using a decade-old game engine, it's decidedly niche. You sell 459 copies. ",
+      "opts": [
+        {
+          "text": "OptionOne",
+          "next": "LeadsTo",
+          "effects": {
+            "perf": 10
+          }
+        },
+        {
+          "text": "OptionTwe",
+          "next": "LeadsTo",
+          "effects": {
+            "perf": 10
+          }
+        }
+      ]
+    },
+    "cardTitle": {
+      "title": "TitleText",
+      "text": "CardText",
+      "opts": [
+        {
+          "text": "OptionOne",
+          "next": "LeadsTo",
+          "effects": {
+            "perf": 10
+          }
+        },
+        {
+          "text": "OptionTwe",
+          "next": "LeadsTo",
+          "effects": {
+            "perf": 10
+          }
+        }
+      ]
+    }
+    
+  },
+  "climb": {
+    "start": {
+      "title": "Congratulations on your promotion!",
+      "text": "Congrats on your promotion to %TITLE% in the %DEPARTMENT% division! The higher ups are sure to start taking notice of you now!"
+    }
+  }
+}
+
+title: Conquering Consumer Nanotech!
+Congrats on your promotion to an Associate Project Manager role in the Consumer Nanotech division! The higher ups are sure to start taking notice of you now!
+
+1. Get to work!
+2. Start feeling out the department politics...
+
+title: More Content Tbd...
+Lorem Ipsum placeholder jibber jabber.
+
+1. Get to work!
+2. Actually, this is just a temporary job to pay the bills while I pursue my true passion, game development.
+
+title: You make a game!
+You spend the next three years coasting in the mail room, while working nose the grindstone every night and weekend at home on your passion project - an open-world, grim-dark version of that one Genesis game with Cool Spot. First, you learn how to code and use modern game engines, then take a few skillshare courses to pick up some basic skills in digital art. You toil away and eventually get together something resembling the game you envisioned, with reasonable compromises here and there.
+
+1. Release the game guerrilla style!
+2. Release the game after sensibly investing in some modest marketing.
+
+title: Your game isn't good
+You sell 124 copies of your game but most of those sales are probably down to the excellent cover artwork you paid an art student 100 zonkoCredits to make for you. You've wasted three years of your life. At least you've become good friends with your manager in the mail room, Merle. He even played your game start to finish, and thought it was pretty ok.
+
+1. Decide it's time to take this Megacorp job seriously
+2. Stick to your guns! Work on your next idea, a space shooter with a real time trading economy and complicated romance trees with aliens.
+
+#GameOverSlides
+title: You are fired
+Merle loves your new idea when you tell him all about it, but he still has to fire you because you never get anything done at your very simple job in the mail room. But he can't wait to play the new game. With all the time on your hands to work on it, it'll probably be great. Right?
+
+1. Start over
+2. Fuck this I'm gonna go make that game!
+
+title: You've made it
+You're the Vice President of Nanotechnology at Megacorp! You're a VP. After years of fastidious boot-licking, you're in upper management. The vacation package alone makes it all worth while.
+After one year in the role, you're forced out because they're 'taking the company in another direction.' Seems you took a little too long to get here. But with the severance you buy an island. Enjoy retirement!
+
+1. Start Over
+2. Enjoy that island living.
+
+#TheClimb
+Moving up!
+
+You work hard for two years and earn a minor promotion! Woohoo! Making progress here.
+
+1. Great!
+
+Conquering Consumer Nanotech!
+
+Congrats on your promotion to a {title+1} role in the Consumer Nanotech division! The higher ups are sure to start taking notice of you now!
+
+1. Nose to the grindstone...
+2. Start feeling out the department politics...
+
+a2
+a3
+a4
+a5
+a6
+b1
+b2
+
+x1
+x2
+x3
+x4
+
+cProgress
+cJob
+cOptions
+
+let years = 0;
+enemyCount = 0;
+augCount = 0;
+
+randomly offer an augment
+backstabbing can create enemies
+enemies can create attacks
+attacks can be mitigated by augments
+
+currentTitle
+yearsPassed
+enemyCount
+augCount
+
+each year poses a single question
+this question has a few answers
+some game over, some lead to augments, some lead to enemies,
+but most increase or decrease your employee rating
+if employee rating ever hits F you're fired gameover
+if employee rating ever hits A+ you're ?
+
+So:
+write 30 or so questions
+
+One day in the break room, a
