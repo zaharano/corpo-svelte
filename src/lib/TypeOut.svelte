@@ -46,11 +46,10 @@
 <style>
   div {
     text-align: left;
-    letter-spacing: .1rem;
     line-height: 1.1;
-    font-family: 'Metropolis';
-    font-weight: 800;
-    font-size: 2.8vmin;
+    font-family: 'Source Code Pro';
+    /* font-weight: 800; */
+    font-size: 2.3vmin;
     color: hsl(177, 62%, 63%);
     text-shadow: 0px 0px 9.12281px rgba(73, 193, 188, 0.8),
       0px 0px 54.7368px #49c1bc;
@@ -59,5 +58,17 @@
 
   :global(.typeOut-container > *) {
     animation: burn 400ms linear 1 forwards;
+  }
+  
+  @keyframes burn {
+    0% {
+      color: hsl(177, 64%, 95%);
+      text-shadow: 0px 0px 9.12281px white, 0px 0px 54.7368px white;
+    }
+    to {
+      color: hsl(177, 62%, 63%);
+      text-shadow: 0px 0px 9.12281px rgba(73, 193, 188, 0.8),
+        0px 0px 54.7368px #49c1bc;
+    }
   }
 </style>
