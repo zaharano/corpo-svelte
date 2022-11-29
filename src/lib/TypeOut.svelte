@@ -2,33 +2,34 @@
   import {onMount} from 'svelte';
 
   export let content = 'This is the default text content for the TypingOut component.';
+  export let typeSpeed = 50;
 	
   let cArr = content.split("");
-
 	let container;
-
   let timer = null;
-  function seq(){
+
+  function seq() {
     let count = 0;
 
-    timer = setInterval(function(){
+    timer = setInterval(() => {
       let prev = document.querySelector('.burn');
       if (prev) {
         prev.classList.remove('burn');
       }
       if (count < cArr.length) {
-        type(cArr[count])
+        key(cArr[count])
         count++;
       }
       else {
         clearInterval(timer);
       }
-    }, 50);
+    }, typeSpeed);
   }
-  // make interval slightly random
+  // TODO: make interval slightly random?
 
-  function type(c) {
+  function key(c) {
     const child = document.createElement('span');
+
     child.textContent = c;
     child.classList.add('burn');
     container.appendChild(child);
@@ -40,26 +41,23 @@
 
 </script>
 
-<div class='typeOut' bind:this={container}/>
+<div class='typeOut-container' bind:this={container}/>
 
 <style>
   div {
-    position: absolute;
     text-align: left;
-    top: 17%;
-    left: 17.5%;
-    width: 65%;
-    height: 60%;
-    font-family: 'Rubik Mono One', Courier, monospace;
-    font-weight: 400;
-    font-size: 2.5vmin;
-    color: #8fe6e2;
+    letter-spacing: .1rem;
+    line-height: 1.1;
+    font-family: 'Metropolis';
+    font-weight: 800;
+    font-size: 2.8vmin;
+    color: hsl(177, 62%, 63%);
     text-shadow: 0px 0px 9.12281px rgba(73, 193, 188, 0.8),
       0px 0px 54.7368px #49c1bc;
-    filter: blur(0.04em);
+    filter: blur(0.03em);
   }
 
-  :global(.typeOut > *) {
-    animation: burn 300ms linear 1 forwards;
+  :global(.typeOut-container > *) {
+    animation: burn 400ms linear 1 forwards;
   }
 </style>
