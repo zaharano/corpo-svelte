@@ -9,14 +9,14 @@ potentialEnemies = [
 "Kensington P.J. Wintermute",
 ]
 
-potentialAugments = [
-Adrenaline Pump
-Blood Oxygen Recycler
-Central Core Gyroscope
-Dermal Calcification
-Toxicity Neutralizing Nanobots
-Optical Spectrum Enhancement
-Emergency Datajack Breaker
+augments = [
+'Adrenaline Pump',
+'Blood Oxygen Recycler',
+'Central Core Gyroscope',
+'Dermal Calcification',
+'Toxicity Neutralizing Nanobots',
+'Optical Spectrum Enhancement',
+'Emergency Datajack Breaker'
 ]
 
 import titleGore from titleGore.js
