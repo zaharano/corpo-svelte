@@ -53,19 +53,7 @@ Focus (test window eventlistner blur and focus)
 Status
 Clicks / minute
 
-if did gameDev
-YOUR BOSS KNOWS YOUR GAME
-if refined
-Boss finds out you made that amazing Cool Spot game and turns out to be a superfan. Promotion x2
-if unrefined
-Boss finds out you made that shitty Cool Spot game and has a laugh at your expense. Have to get a sideways move to a new team. Time x2, change departments
-
-if Merle likes you
-MERLE HELPS
-Get a piece of mail intended for someone else that you can use to blackmail them. 
-Heck yeh Promotion x2
-opens retribution
-nah nothing
+--- EXTENDED EVENTS ---
 
 OH LOOK YOU CAN BE A DICK
 Throw your colleauge under the bus?
@@ -98,33 +86,76 @@ opens up replicant love arc
 opens up replicant wants freedom
 
 YOU SUFFER SOME COLLATERAL DAMAGE of some Yakuza warfare 
-they buy you some artificial stuff to keep you quiet time x2
-opens up owe them a favor
+they offer to buy you some artificial stuff to keep you quiet time x2
+-opens up owe them a favor
 -opens up augments get you ahead job +3
 -opens up augments provide opportunity
 -opens up augments go haywire
 
-YOU OWE THEM A FAVOR
+level 5+
+YOU ARE APPROACHED BY A JOURNALIST WHO WANTS TO EXPOSE SOMETHING AT MEGACORP
+use to your advantage
+dont risk it
+do the right thing
+
+
+-- ADDED EVENTS --
+if did gameDev
+YOUR BOSS KNOWS YOUR GAME
+if refined
+Boss finds out you made that amazing Cool Spot game and turns out to be a superfan. Promotion x2
+if unrefined
+Boss finds out you made that shitty Cool Spot game and has a laugh at your expense. Have to get a sideways move to a new team. Time x2, change departments
+
+if Merle likes you
+MERLE HELPS
+Get a piece of mail intended for someone else that you can use to blackmail them. 
+Heck yeh Promotion x2
+opens retribution
+nah nothing
+
+if Yakuza gave you some augments
+YAKUZA CALLS IN THE FAVOR
 --do it time x2 job -1
 --dont do it you ded
 
+if augments
+YOU CAN USE YOUR AUGMENTS TO GET A LEG up
+
+if augments 
+YOU CAN USE YOUR AUGMENTS TO 
+
+-- GENERICS --
 THERES A GLOBAL PANDEMIC
 
 YOU HAVE SOME REALLY GOOD NOODLES 
 
-See an ad on a blimp
+ADVERTISING IN YOUR DREAMS
 
-Ads invading your dreams
+PROTESTS OUTSIDE THE OFFICE ARE BRUTALLY CRUSHED BY PRIVATE SECURITY
 
-It's rained for 358 days and yet the world is a desert?
+MAN THE AMBIANCE TODAY IS JUST _chefs kiss_
 
-Man the ambiance is just _chef's kiss_
+THE C-SUITE CALLS IN CONSULTANTS FOR VERTICAL INTEGRATION
+you move departments and lose time to ingratiate yourself to a new group
 
-at the end of any resolve we check various conditions and potentially throw up new flags based on checks
+YOUR COMPUTER IS INFECTED WITH ADWARE 
+slow the typing speed to a crawl for awhile
 
-event where someone bloats your computer with adware and slow the typing speed to a crawl for awhile
+YOUR WORK COMPUTER IS BREAKING DOWN 
+you ask for a new one
+level check
+if high enough level, option to demand IT fix it
+if not, IT laughs at you.
+if have technical augment, option to fix the problem
+elsewize, have to spend time stealing one someone who got fired on the floor
 
-event where your screen starts flickering and you ask for a new one but IT laughs at you. you spend awhile fixing it.
+FIND AN INCRIMINATING FILE ON YOUR WORK COMPUTER LEFT BY SOMEONE else
+
+THERES A GHOST IN THE MACHINE
+
+
+
 
  _______ _______  ______ _______ _______  _____   ______  _____ 
  |  |  | |______ |  ____ |_____| |       |     | |_____/ |_____]
@@ -138,3 +169,22 @@ event where your screen starts flickering and you ask for a new one but IT laugh
 ██║ ╚═╝ ██║███████╗╚██████╔╝██║  ██║╚██████╗╚██████╔╝██║  ██║██║     
 ╚═╝     ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝     
                                                                      
+
+end of prologue:
+generate department
+set level 1
+set title at 1
+set performance at C
+add the basic event deck
+
+promotion function
+adds one level
+grabs new title
+check if level 6 {
+  add leveled events to deck
+}
+
+basic loop:
+check if event is active {
+  load event and card
+}
