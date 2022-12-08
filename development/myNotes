@@ -178,6 +178,7 @@ set performance at C
 add the basic event deck
 
 promotion function
+remove promotion flag
 adds one level
 grabs new title
 check if level 6 {
@@ -185,6 +186,15 @@ check if level 6 {
 }
 
 basic loop:
-check if event is active {
-  load event and card
+check if event is flagged {
+  load event loop
+  resolve event screens (apply changes along way) until conclusion reached
+} else {
+  check focus for effect {
+    effect performance
+  }
+  check promotion flag or performance for promotion {
+    promote
+  }
+  flag a new event from deck
 }
