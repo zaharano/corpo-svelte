@@ -5,6 +5,7 @@
   export let typeSpeed = 50;
 	
   let cArr = content.split("");
+  let domArr = [];
 	let container;
   let timer = null;
 
@@ -26,6 +27,8 @@
     }, typeSpeed);
   }
   // TODO: make interval slightly random?
+  // TODO: fix for line breaks emerging as text is added
+  // make append happen immediately but cache the array of characters as they are added. Then use the interval to change classes to make opaque and animate
 
   function key(c) {
     const child = document.createElement('span');
@@ -44,18 +47,6 @@
 <div class='typeOut-container' bind:this={container}/>
 
 <style>
-  div {
-    text-align: left;
-    line-height: 1.1;
-    font-family: 'Source Code Pro';
-    /* font-weight: 800; */
-    font-size: 2.3vmin;
-    color: hsl(177, 62%, 63%);
-    text-shadow: 0px 0px 9.12281px rgba(73, 193, 188, 0.8),
-      0px 0px 54.7368px #49c1bc;
-    filter: blur(0.03em);
-  }
-
   :global(.typeOut-container > *) {
     animation: burn 400ms linear 1 forwards;
   }
