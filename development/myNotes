@@ -1,5 +1,12 @@
 ## Framework
 
+LOOP
+is a stage set? 
+yes, progress stage. 
+no, check metrics, make changes, and select a stage.
+repeat
+
+
 cProgress
 cJob
 cOptions
@@ -9,14 +16,14 @@ potentialEnemies = [
 "Kensington P.J. Wintermute",
 ]
 
-augments = [
-'Adrenaline Pump',
-'Blood Oxygen Recycler',
-'Central Core Gyroscope',
-'Dermal Calcification',
-'Toxicity Neutralizing Nanobots',
-'Optical Spectrum Enhancement',
-'Emergency Datajack Breaker'
+potentialAugments = [
+Adrenaline Pump
+Blood Oxygen Recycler
+Central Core Gyroscope
+Dermal Calcification
+Toxicity Neutralizing Nanobots
+Optical Spectrum Enhancement
+Emergency Datajack Breaker
 ]
 
 import titleGore from titleGore.js
@@ -25,11 +32,6 @@ import
 let years = 0;
 enemyCount = 0;
 augCount = 0;
-
-randomly offer an augment
-backstabbing can create enemies
-enemies can create attacks
-attacks can be mitigated by augments
 
 currentTitle
 titleLevel
@@ -51,59 +53,64 @@ Focus (test window eventlistner blur and focus)
 Status
 Clicks / minute
 
-Clock in time
-Timer
-Idle time
-Activity Percent
-Focus (test window eventlistner blue and focus)
-
-Status
-Clicks / minute
-
 if did gameDev
+YOUR BOSS KNOWS YOUR GAME
 if refined
 Boss finds out you made that amazing Cool Spot game and turns out to be a superfan. Promotion x2
 if unrefined
 Boss finds out you made that shitty Cool Spot game and has a laugh at your expense. Have to get a sideways move to a new team. Time x2, change departments
-if Merle likes you
-Get a piece of mail intended for someone else that you use to blackmail them. Promotion x2
 
+if Merle likes you
+MERLE HELPS
+Get a piece of mail intended for someone else that you can use to blackmail them. 
+Heck yeh Promotion x2
+opens retribution
+nah nothing
+
+OH LOOK YOU CAN BE A DICK
 Throw your colleauge under the bus?
 Yes promotion x2 job approval x2
 opens up retribution event
 No time x2 job approval -1
 opens up helping hand event
 
-Work weekends on a project
+if you dicked someone over
+THEY ARE COMING FOR YOU
+if you have a cognitive augment
+outsmart them promotion and job approval +
 
-Security thinks you're a corporate spy
-if you're level 8 or up use your connections to get out
+YOUR MANAGER DEMANDS YOU WORK WEEKENDS
+
+SECURITY THINKS YOURE A CORPO SPY
+if youre level 8 or up use your connections to get out
 else
 plead innocence time x3
 
-Approached by a rival corp to spy
+YOURE APPROACHED BY RIVAL CORP TO SPY
 
-See something, say something
+YOU SEE YOUR COWORKER DOING SOMETHING SUSPICIOUS
 
-Your cyberjack gets infected
+YOUR CYBERJACK IS INFECTED
 
-Get a replicant
+COMPANY IS SAVING MONEY BY BACKFILLING JUNIOR POSITIONS WITH REPLICANTS
 opens up replicant run amok
 opens up replicant love arc
 opens up replicant wants freedom
 
-Collateral damage of some Yakuza warfare, they buy you some artificial stuff to keep you happy time x2
+YOU SUFFER SOME COLLATERAL DAMAGE of some Yakuza warfare 
+they buy you some artificial stuff to keep you quiet time x2
 opens up owe them a favor
-do it time x2 job -1
-don't do it you ded
-opens up augments get you ahead
-job +3
-opens up augments provide opportunity
-opens up augments go haywire
+-opens up augments get you ahead job +3
+-opens up augments provide opportunity
+-opens up augments go haywire
 
-Global pandemic
+YOU OWE THEM A FAVOR
+--do it time x2 job -1
+--dont do it you ded
 
-Have some really good noodles
+THERES A GLOBAL PANDEMIC
+
+YOU HAVE SOME REALLY GOOD NOODLES 
 
 See an ad on a blimp
 
@@ -113,19 +120,21 @@ It's rained for 358 days and yet the world is a desert?
 
 Man the ambiance is just _chef's kiss_
 
-main loop is
-base
-check for forced flag
-if yes
-resolve flag event
-if no
-announce level
-ask to toil
-if yes
-resolve toil
-if no
-resolve opt event
-
-most basic flag is prologue
-
 at the end of any resolve we check various conditions and potentially throw up new flags based on checks
+
+event where someone bloats your computer with adware and slow the typing speed to a crawl for awhile
+
+event where your screen starts flickering and you ask for a new one but IT laughs at you. you spend awhile fixing it.
+
+ _______ _______  ______ _______ _______  _____   ______  _____ 
+ |  |  | |______ |  ____ |_____| |       |     | |_____/ |_____]
+ |  |  | |______ |_____| |     | |_____  |_____| |    \_ |      
+
+
+███╗   ███╗███████╗ ██████╗  █████╗  ██████╗ ██████╗ ██████╗ ██████╗ 
+████╗ ████║██╔════╝██╔════╝ ██╔══██╗██╔════╝██╔═══██╗██╔══██╗██╔══██╗
+██╔████╔██║█████╗  ██║  ███╗███████║██║     ██║   ██║██████╔╝██████╔╝
+██║╚██╔╝██║██╔══╝  ██║   ██║██╔══██║██║     ██║   ██║██╔══██╗██╔═══╝ 
+██║ ╚═╝ ██║███████╗╚██████╔╝██║  ██║╚██████╗╚██████╔╝██║  ██║██║     
+╚═╝     ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝     
+                                                                     
