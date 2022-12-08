@@ -5,6 +5,8 @@
   import ScreenHousing from './lib/ScreenHousing.svelte';
   import ScreenFx from './lib/screens/ScreenFx.svelte';
   import TextContent from './lib/screens/TextContent.svelte';
+  import Tracker from './lib/Tracker.svelte';
+  import Options from './lib/Options.svelte';
 </script>
 
 <main>
@@ -14,6 +16,8 @@
       <ScreenFx>
         <TextContent slot='content' >
           <TypeOut slot='text'  />
+          <Options slot='options' />
+          <Tracker slot='tracker' />
         </TextContent>
       </ScreenFx>
     </div>
