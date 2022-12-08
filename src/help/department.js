@@ -1,5 +1,3 @@
-// exports a single formed DEPARTMENT, as a string
-
 function department() {
   const PREFIXES = [
     'Consumer',
@@ -26,4 +24,4 @@ function department() {
   return `${getRandomItem(PREFIXES)} ${getRandomItem(SUFFIXES)}`;
 }
 
-export default department();
+export default department;
