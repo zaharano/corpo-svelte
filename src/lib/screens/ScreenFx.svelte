@@ -1,8 +1,8 @@
 <script>
-
+  export let flicker = false;
 </script>
 
-<div class='crt'>
+<div class:flicker='{flicker === true}'>
   <slot name='content'>No defined screen content</slot>
 </div>
 
@@ -137,7 +137,7 @@
       text-shadow: 2.6208764473832513px 0 1px rgba(0,30,255,0.5), -2.6208764473832513px 0 1px rgba(255,0,80,0.3), 0 0 3px;
     }
   }
-  .crt::after {
+  .flicker::after {
     content: " ";
     display: block;
     position: absolute;
