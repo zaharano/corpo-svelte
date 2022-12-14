@@ -4,9 +4,11 @@
   import Megacorp from './lib/screens/Megacorp.svelte';
   import ScreenHousing from './lib/ScreenHousing.svelte';
   import ScreenFx from './lib/screens/ScreenFx.svelte';
-  import TextContent from './lib/screens/TextContent.svelte';
+  import Display from './lib/screens/Display.svelte';
   import Tracker from './lib/Tracker.svelte';
   import Options from './lib/Options.svelte';
+  import Header from './lib/screens/Header.svelte'
+  import Footer from './lib/screens/Footer.svelte'
 </script>
 
 <main>
@@ -14,11 +16,13 @@
     <div class='screen-container'>
       <ScreenHousing />
       <ScreenFx>
-        <TextContent slot='content' >
+        <Display slot='content' >
+          <Header slot='header'/>
           <TypeOut slot='text'  />
           <Options slot='options' />
           <Tracker slot='tracker' />
-        </TextContent>
+          <Footer slot='footer'/>
+        </Display>
       </ScreenFx>
     </div>
   </div>
