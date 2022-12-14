@@ -1,7 +1,9 @@
 <div class='screen-type-container'>
+  <slot name='header'>No header text</slot>
   <slot name='text'>No defined text</slot>
   <slot name='options'>No defined options</slot>
   <slot name='tracker'>No tracker info</slot>
+  <slot name='footer'>No footer text</slot>
 </div>
 
 <style>
