@@ -18,11 +18,11 @@
   function clockIn() {
     timeDisplayInterval = setInterval(() => {
       const timeInSeconds = Math.round(inactiveTimer.time() / 1000);
-      workTimeDisplay = timeInSeconds;
+      idleTimeDisplay = timeInSeconds;
     }, 100)
     idleDisplayInterval = setInterval(() => {
       const timeInSeconds = Math.round(workTimer.time() / 1000);
-      idleTimeDisplay = timeInSeconds;
+      workTimeDisplay = timeInSeconds;
     }, 100)
 
     workTimer.start();
@@ -57,7 +57,7 @@
   on:click={resetIdle}
 />
 
-<span on:click={genDepartment}>{workTimeDisplay} {idleTimeDisplay} {dept}</span>
+<span on:click={genDepartment}>Time in: {workTimeDisplay} Time idle:{idleTimeDisplay} {dept}</span>
 
 <style>
   span {
