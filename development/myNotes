@@ -72,25 +72,36 @@ YOUR MANAGER DEMANDS YOU WORK WEEKENDS
 SECURITY THINKS YOURE A CORPO SPY
 if youre level 8 or up use your connections to get out
 else
-plead innocence time x3
+plead innocence
+long event ---
 
 YOURE APPROACHED BY RIVAL CORP TO SPY
+long event ---
 
 YOU SEE YOUR COWORKER DOING SOMETHING SUSPICIOUS
+long event ---
 
 YOUR CYBERJACK IS INFECTED
+if level get an augmented one
+deal with it lose time
 
+if level 5
 COMPANY IS SAVING MONEY BY BACKFILLING JUNIOR POSITIONS WITH REPLICANTS
+welcome your replicant underling add performance
 opens up replicant run amok
 opens up replicant love arc
 opens up replicant wants freedom
+refuse to work with replicants
+lose ground - neg performance and time 
+
 
 YOU SUFFER SOME COLLATERAL DAMAGE of some Yakuza warfare 
-they offer to buy you some artificial stuff to keep you quiet time x2
+they offer to buy you some artificial stuff to keep you quiet time x1
 -opens up owe them a favor
 -opens up augments get you ahead job +3
 -opens up augments provide opportunity
 -opens up augments go haywire
+say no to the offer, have to recover - time x4
 
 level 5+
 YOU ARE APPROACHED BY A JOURNALIST WHO WANTS TO EXPOSE SOMETHING AT MEGACORP
@@ -103,14 +114,14 @@ do the right thing
 if did gameDev
 YOUR BOSS KNOWS YOUR GAME
 if refined
-Boss finds out you made that amazing Cool Spot game and turns out to be a superfan. Promotion x2
+Boss finds out you made that amazing Cool Spot game and turns out to be a superfan. Promotion
 if unrefined
 Boss finds out you made that shitty Cool Spot game and has a laugh at your expense. Have to get a sideways move to a new team. Time x2, change departments
 
 if Merle likes you
 MERLE HELPS
 Get a piece of mail intended for someone else that you can use to blackmail them. 
-Heck yeh Promotion x2
+Heck yeh Promotion 
 opens retribution
 nah nothing
 
@@ -122,8 +133,6 @@ YAKUZA CALLS IN THE FAVOR
 if augments
 YOU CAN USE YOUR AUGMENTS TO GET A LEG up
 
-if augments 
-YOU CAN USE YOUR AUGMENTS TO 
 
 -- GENERICS --
 THERES A GLOBAL PANDEMIC
@@ -153,6 +162,12 @@ elsewize, have to spend time stealing one someone who got fired on the floor
 FIND AN INCRIMINATING FILE ON YOUR WORK COMPUTER LEFT BY SOMEONE else
 
 THERES A GHOST IN THE MACHINE
+causes an effect where HELP SOS HELP gets highlighted in an otherwise benign screen message.
+whatever response has no effect
+what the heck response you realize there is a compicated object stuck in a buffer
+if replicants write it out to one save a persons life
+save to disk HAVEDISK flag
+purge the buffer
 
 
 
