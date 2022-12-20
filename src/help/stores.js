@@ -7,5 +7,12 @@ export const state = writable({
   title: undefined,
   jobPerformance: undefined,
   flags: {},
+  currentEvent: undefined,
   eventDeck: [],
+  specialFX: {
+    typeSpeed: 1,
+    flicker: false,
+    corruption: false,
+    ghost: false,
+  },
 });
