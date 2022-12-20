@@ -2,7 +2,6 @@
   import { onMount } from 'svelte';
 
   import Timer from '../help/timer.js'
-  import department from '../help/department.js';
 
   let workTimer = new Timer('work');
   let inactiveTimer = new Timer('inactive');
@@ -12,8 +11,6 @@
 
   let timeDisplayInterval;
   let idleDisplayInterval;
-
-  let dept;
 
   function clockIn() {
     timeDisplayInterval = setInterval(() => {
@@ -41,10 +38,6 @@
     inactiveTimer.start();
   }
 
-  function genDepartment() {
-    dept = department();
-  }
-
   onMount(() => {
     clockIn();
 	});
@@ -57,19 +50,16 @@
   on:click={resetIdle}
 />
 
-<span on:click={genDepartment}>Time in: {workTimeDisplay} Time idle:{idleTimeDisplay} {dept}</span>
+<span><strong>TIME: </strong>{workTimeDisplay} <strong>IDLE: </strong>{idleTimeDisplay}</span>
 
 <style>
   span {
     text-align: center;
     width: 100%;
     line-height: 1.1;
-    font-family: 'Digital-7';
     color: hsla(0, 100%, 50%, 1);
     text-shadow: 0px 0px 9.12281px hsla(0, 100%, 50%, .8),
       0px 0px 54.7368px hsla(0, 100%, 50%, 1);
     filter: blur(0.03em);
-    position: absolute;
-    bottom: 0;
   }
 </style>
