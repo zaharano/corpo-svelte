@@ -10,7 +10,7 @@
 
 <style>
   .option {
-    padding: .7em;
+    padding: .4em;
     background-color: inherit;
     border: none;
     color: inherit;

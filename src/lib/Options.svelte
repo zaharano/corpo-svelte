@@ -11,7 +11,7 @@
   ]
 </script>
 
-<div>
+<div class="options">
   {#each options as option, idx}
    <Option num={idx} {...option}/>
   {/each}
@@ -19,7 +19,7 @@
 
 
 <style>
-  div {
+  .options {
    margin: .5em 0;
   }
 </style>
