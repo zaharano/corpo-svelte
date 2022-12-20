@@ -1,6 +1,7 @@
 // timer constructor
 // instantiates a timer that can be started and stopped and keeps an aggregate
 // TODO add optional param of a cached DOM ref and handle interval internally
+// TODO move methods to prototype? who cares? just make it a class already?
 
 function Timer(name) {
   this.name = name;
