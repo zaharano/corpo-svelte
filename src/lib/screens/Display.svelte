@@ -27,5 +27,6 @@
     filter: blur(0.03em);
     display: flex;
     flex-direction: column;
+    height: 100%;
   }
 </style>
