@@ -1,12 +1,23 @@
 <script>
   export let flicker = false;
+
 </script>
 
-<div class:flicker='{flicker === true}'>
-  <slot name='effected'>No defined screen content</slot>
+<div class='screen-content-container' class:flicker='{flicker === true}'>
+  <slot>No content</slot>
 </div>
 
 <style>
+  .screen-content-container {
+    position: absolute;
+    top: 14%;
+    left: 17.5%;
+    width: 65%;
+    height: 65%;
+  }
+  
+  /* this wasn't broken before, maybe because it was getting informed by the svg, need to figure out! */
+  
   @keyframes flicker {
     0% {
       opacity: 0.27861;

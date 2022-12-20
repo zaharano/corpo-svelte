@@ -1,29 +1,41 @@
 <script>
-  import TypeOut from './lib/TypeOut.svelte';
   import Runner from './lib/screens/Runner.svelte';
   import Megacorp from './lib/screens/Megacorp.svelte';
   import ScreenHousing from './lib/ScreenHousing.svelte';
   import ScreenFx from './lib/screens/ScreenFx.svelte';
   import Display from './lib/screens/Display.svelte';
-  import Tracker from './lib/Tracker.svelte';
-  import Options from './lib/Options.svelte';
   import Header from './lib/screens/Header.svelte'
   import Footer from './lib/screens/Footer.svelte'
+  import ScreenContent from './lib/screens/ScreenContent.svelte';
+  
+  import { onMount } from 'svelte';
+
+  let loading = 0;
+  let loadingInterval;
+
+  onMount(() => {
+    loadingInterval = setInterval(() => {
+      console.log(loading)
+      loading += 1;
+      if (loading === 3) {clearInterval(loadingInterval)}
+    }, 3000)
+  })
 </script>
 
 <main>
   <div class="app-container">
     <div class='screen-container'>
       <ScreenHousing />
-      <ScreenFx>
-        <Display slot='content' >
-          <Header slot='header'/>
-          <TypeOut slot='text'  />
-          <Options slot='options' />
-          <Tracker slot='tracker' />
-          <Footer slot='footer'/>
-        </Display>
-      </ScreenFx>
+      <ScreenContent>
+        {#if loading <= 1}
+          <Runner />
+        {:else if loading == 2}
+          <Megacorp slot='content'/>
+        {:else}
+          <Display slot='content' />
+        {/if}
+      </ScreenContent>
+      
     </div>
   </div>
 </main>
