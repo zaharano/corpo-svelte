@@ -1,0 +1,24 @@
+#EVENT LOOP FUNCTIONS
+initiation:
+  updater:
+    flags {...obj, specified:specified}
+resolution:
+  updaters:
+    nums:
+      jobPerformance +/- n
+      years + n
+    etc:
+      flags {...obj, new:new}
+      eventDeck [...obj, ...new]
+  set:
+    department
+    resolve event
+
+#MAIN LOOP FUNCTIONS
+promotion:
+demotion:
+checkStats:
+
+
+All etc are discreet state with custom mutators
+Why can't specialFX just be part of flags
