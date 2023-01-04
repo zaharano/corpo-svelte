@@ -1,0 +1,47 @@
+{
+  "pl": {
+    "requires": {
+      "lvl": 6,
+      "gameDev": true
+    },
+    "onInit": {
+      "updates": {}
+    },
+    "onResolution": {
+      "updates": {}
+    },
+    "screens": {
+      "start": {
+        "title": "This is the title of the screen",
+        "text": "This is the screen text",
+        "opts": [
+          {
+            "requires": {
+              "lvl": 6,
+              "gameDev": true
+            },
+            "text": "Option 1 text",
+            "next": "opt1",
+            "effects": {
+              "updates": {
+                "perf": -10,
+                "time": 1
+              },
+              "sets": {},
+              "setFlags": {},
+              "addEvents": ["event1", "event2"],
+              "removeEvents": ["event3", "event4"]
+            }
+          },
+          {
+            "text": "Option 2 text",
+            "next": "opt2",
+            "effects": {
+              "years": 2
+            }
+          }
+        ]
+      }
+    }
+  }
+}

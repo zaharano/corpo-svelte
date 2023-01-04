@@ -1,0 +1,52 @@
+{
+  "pl": {
+    "req": {
+      // optional, events can have required level or flags
+      "lvl": 6,
+      "gameDev": true
+    },
+    "res": {
+      // MAYBE events can have all the same resolve effects as options
+    },
+    "screens": {
+      "start": {
+        "title": "This is the title on the first screen", // req
+        "text": "This is the first screen of event text", // req
+        "opts": [
+          {
+            "req": {
+              // optional, options can have required level or flags
+              "lvl": 6,
+              "gameDev": true
+            },
+            "text": "Option 1 text",
+            "next": "opt1",
+            "effects": {
+              // all effects are optional
+              "updates": {
+                // updates add or subtract from existing value
+                "perf": -10,
+                "time": 1
+              },
+              "sets": {
+                // sets replace the existing value
+              },
+              "setFlags": {
+                // optional, selection can set flags
+              },
+              "addEvents": ["event1", "event2"],
+              "removeEvents": ["event3", "event4"]
+            }
+          },
+          {
+            "text": "Option 2 text",
+            "next": "opt2",
+            "effects": {
+              "years": 2
+            }
+          }
+        ]
+      }
+    }
+  }
+}
