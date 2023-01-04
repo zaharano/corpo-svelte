@@ -2,22 +2,19 @@
   import Runner from './lib/screens/Runner.svelte';
   import Megacorp from './lib/screens/Megacorp.svelte';
   import ScreenHousing from './lib/ScreenHousing.svelte';
-  import ScreenFx from './lib/screens/ScreenFx.svelte';
   import Display from './lib/screens/Display.svelte';
-  import Header from './lib/screens/Header.svelte'
-  import Footer from './lib/screens/Footer.svelte'
   import ScreenContent from './lib/screens/ScreenContent.svelte';
   
   import { onMount } from 'svelte';
 
-  let loading = 0;
+  let loading = 3;
   let loadingInterval;
 
   onMount(() => {
     loadingInterval = setInterval(() => {
       console.log(loading)
       loading += 1;
-      if (loading === 3) {clearInterval(loadingInterval)}
+      if (loading > 3) {clearInterval(loadingInterval)}
     }, 3000)
   })
 </script>
