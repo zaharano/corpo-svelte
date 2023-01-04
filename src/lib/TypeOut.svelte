@@ -8,18 +8,25 @@
   let domArr = [];
 	let container;
   let timer = null;
+  let clear;
 
   function seq() {
-    let count = 0;
+    let added = 0;
+    let revealed = 0;
+    
+    for (let i = 0; i < cArr.length; i++) {
+      addCharacter(cArr[added], added)
+      added++;
+    }
 
     timer = setInterval(() => {
       let prev = document.querySelector('.burn');
       if (prev) {
         prev.classList.remove('burn');
       }
-      if (count < cArr.length) {
-        key(cArr[count])
-        count++;
+      if (revealed < cArr.length) {
+        revealCharacter(revealed)
+        revealed++;
       }
       else {
         clearInterval(timer);
@@ -30,25 +37,39 @@
   // TODO: fix for line breaks emerging as text is added
   // make append happen immediately but cache the array of characters as they are added. Then use the interval to change classes to make opaque and animate
 
-  function key(c) {
+  function addCharacter(c, count) {
     const child = document.createElement('span');
-
+    child.id = `c${count}`
     child.textContent = c;
-    child.classList.add('burn');
+    child.classList.add('hidden');
     container.appendChild(child);
+  }
+
+  function revealCharacter(count) {
+    const selected = document.querySelector(`#c${count}`)
+    selected.classList.add('burn')
+    selected.classList.remove('hidden')
   }
 
 	onMount(() => {
     seq();
+    // seq will need to fire on any change of the text.
+    clear = function() {
+      while(container.hasChildNodes()) {
+        container.removeChild(container.firstChild);
+    }
+  }
 	});
 
 </script>
 
-<div class='typeOut-container' bind:this={container}/>
+<div class='typeOut-container' bind:this={container} on:click={clear()}/>
 
 <style>
-  :global(.typeOut-container > *) {
-    animation: burn 400ms linear 1 forwards;
+  :global(.burn) {
+    color: hsl(177, 64%, 95%);
+    text-shadow: 0px 0px 9.12281px white, 0px 0px 54.7368px white;
+    animation: burn 600ms linear 1 forwards;
   }
   
   @keyframes burn {
@@ -61,5 +82,9 @@
       text-shadow: 0px 0px 9.12281px rgba(73, 193, 188, 0.8),
         0px 0px 54.7368px #49c1bc;
     }
+  }
+
+  :global(.hidden) {
+    opacity: 0;
   }
 </style>
