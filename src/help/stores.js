@@ -1,14 +1,14 @@
 import { writable } from 'svelte/store';
 
-export const state = writable({
+export const jobData = writable({
   currentLevel: 0,
   years: 0,
   department: undefined,
-  title: undefined,
   jobPerformance: undefined,
-  flags: {},
   currentEvent: undefined,
-  eventDeck: [],
+});
+
+export const flags = writable({
   specialFX: {
     typeSpeed: 1,
     flicker: false,
@@ -16,3 +16,9 @@ export const state = writable({
     ghost: false,
   },
 });
+
+export const eventDeck = writable([]);
+
+export const currentEvent = writable('');
+
+export const screenTextLoaded = writable(false);
