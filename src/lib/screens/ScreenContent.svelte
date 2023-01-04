@@ -1,6 +1,5 @@
 <script>
   export let flicker = false;
-
 </script>
 
 <div class='screen-content-container' class:flicker='{flicker === true}'>
