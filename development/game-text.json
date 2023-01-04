@@ -14,14 +14,20 @@
           "text": "Get to work!",
           "next": "toWork",
           "effects": {
-            "perf": 10
+            "updates": {
+              "perf": 10,
+              "time": 1
+            }
           }
         },
         {
           "text": "Actually, this is just a temporary job to pay the bills while I pursue my true passion, game development.",
           "next": "gameDev",
           "effects": {
-            "years": 2
+            "updates": {
+              "time": 2,
+              "perf": -25
+            }
           }
         }
       ]
