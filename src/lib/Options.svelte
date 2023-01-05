@@ -1,5 +1,8 @@
 <script>
-  import Option from "./Option.svelte";
+  import Option from "./Option.svelte"
+
+  import { fly, fade } from 'svelte/transition'
+  import { textLoaded } from "../help/stores"
 
   export let options = [
     {
@@ -12,9 +15,13 @@
 </script>
 
 <div class="options">
-  {#each options as option, idx}
-   <Option num={idx} {...option}/>
-  {/each}
+  {#if $textLoaded }
+    {#each options as option, idx}
+      <div in:fly={{ y: 50, duration: 1000, delay: idx * 700 + 500 }}>
+        <Option num={idx} {...option}/> 
+      </div>
+    {/each}
+  {/if}
 </div>
 
 

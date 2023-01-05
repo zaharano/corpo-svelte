@@ -21,4 +21,8 @@ export const eventDeck = writable([]);
 
 export const currentEvent = writable('');
 
-export const screenTextLoaded = writable(false);
+export const textLoaded = writable(false);
+
+export const text = writable('');
+
+export const options = writable('');
