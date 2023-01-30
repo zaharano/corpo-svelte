@@ -1,10 +1,6 @@
-## Framework
+TODO figure out the text-shadow problem with typeout etc. I think its too expensive. Maybe have to drop it as an effect (or make it switchable)
 
-LOOP
-is a stage set? 
-yes, progress stage. 
-no, check metrics, make changes, and select a stage.
-repeat
+## Framework
 
 
 cProgress
@@ -38,9 +34,6 @@ titleLevel
 yearsPassed
 enemyCount
 augCount
-
-if yearsPassed > x, load die at your keyboard slide
-if currentTitle = x, load forced out from the top slide
 
 ## Tracker
 
@@ -213,3 +206,10 @@ check if event is flagged {
   }
   flag a new event from deck
 }
+
+not a do loop
+first thing input handler does is disable further input.
+process the input.
+valid input makes stuff happen. invalid output does nothing, shows error, re-enables input.
+
+end of option animation enables input
