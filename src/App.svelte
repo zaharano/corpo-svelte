@@ -4,10 +4,11 @@
   import ScreenHousing from './lib/ScreenHousing.svelte';
   import Display from './lib/screens/Display.svelte';
   import ScreenContent from './lib/screens/ScreenContent.svelte';
+  import Debug from './lib/Debug.svelte';
   
   import { onMount } from 'svelte';
 
-  let loading = 3;
+  let loading = 0;
   let loadingInterval;
 
   onMount(() => {
@@ -19,6 +20,7 @@
   })
 </script>
 
+<Debug />
 <main>
   <div class="app-container">
     <div class='screen-container'>
@@ -32,7 +34,6 @@
           <Display slot='content' />
         {/if}
       </ScreenContent>
-      
     </div>
   </div>
 </main>
