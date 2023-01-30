@@ -88,18 +88,18 @@
         "text": "Compromises? No. This is my magnum opus, my gift to humankind. It will be perfect or it will be nothing.",
         "next": "gamePerfect",
         "effects": {
-          "years": 10
+          "years": 5
         }
       }
     ]
   },
   "gameSucks": {
     "title": "Your game isn't good",
-    "text": "You sell 124 copies of your game but most of those sales are probably down to the excellent cover artwork you commissioned from an art student for one hundred XposureTokens. You've wasted two years of your life. At least you've become good friends with your manager in the mail room, Merle. He even played your game start to finish, and thought it was \"pretty ok.\"",
+    "text": "You sell 124 copies of your game but most of those sales are probably down to the excellent cover artwork you commissioned from an art student for one-hundred XposureTokens. You've wasted two years of your life. At least you've become good friends with your manager in the mail room, Merle. He even played your game start to finish, and thought it was \"pretty ok.\"",
     "opts": [
       {
         "text": "Decide it's time to take this Megacorp job seriously.",
-        "next": "LeadsTo",
+        "next": "toWork",
         "effects": {
           "perf": 10
         }
@@ -115,7 +115,7 @@
   },
   "gamePerfect": {
     "title": "Your game is a masterpiece",
-    "text": "After a decade of refinement you release what you can confidently state is the best possible version of your game. It's really quite good, but since it's now using a decade-old game engine, it's decidedly niche. You sell 459 copies. ",
+    "text": "After a half-decade of refinement you release what you can confidently state is the best possible version of your game. It's really quite good, but since it's now using a five year old game engine, it's decidedly niche. You sell 459 copies.",
     "opts": [
       {
         "text": "OptionOne",
