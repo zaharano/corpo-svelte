@@ -1,4 +1,4 @@
-function department() {
+function generateDepartment() {
   const PREFIXES = [
     'Consumer',
     'Applied',
@@ -24,4 +24,4 @@ function department() {
   return `${getRandomItem(PREFIXES)} ${getRandomItem(SUFFIXES)}`;
 }
 
-export default department;
+export default generateDepartment;
