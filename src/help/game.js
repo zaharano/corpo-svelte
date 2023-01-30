@@ -1,65 +1,39 @@
-// basic loop:
-// check if event is flagged {
-//   load event loop
-//   resolve event screens (apply changes along way) until conclusion reached
-// } else {
-//   check focus for effect {
-//     effect performance
-//   }
-//   check promotion flag or performance for promotion {
-//     promote
-//   }
-//   flag a new event from deck
-// }
+import {
+  job,
+  flags,
+  eventDeck,
+  currentEvent,
+  currentScreen,
+  text,
+  options,
+} from './stores.js';
 
-function Game() {
-  let state = {
-    currentLevel: 0,
-    years: 0,
-    department: undefined,
-    title: undefined,
-    jobPerformance: undefined,
-    currentEvent: undefined,
-    flags: {},
-    eventDeck: [],
-  };
+// reset various state variables
+function gameInit() {
+  job.init();
+  flags.init();
+  eventDeck.init();
+}
 
-  this.setLevel = function (num) {
-    state = {
-      ...state,
-      currentLevel: num,
-    };
-  };
-  this.getLevel = function () {
-    return this.state.currentLevel;
-  };
-  this.updateLevel = function (num) {
-    this.state.currentLevel += num;
-  };
+function checkMetrics() {
+  // if jobPerformance > x, promotion
+  // if jobperf < x, demotion
+  // if yearsPassed > x, load die at your keyboard slide
+  // if currentTitle = x, load forced out from the top slide
+  // if idletimer last minute > x, perperf down
+  //
+}
 
-  this.setYears = function () {};
-  this.getYears = function () {};
-  this.updateYears = function () {};
+function resolveSets() {}
 
-  this.newDepartment = function () {};
-  this.getDepartment = function () {};
+function eventInit(eventName) {
+  // load event data from JSON into an Object
+  // put object into a store though?
+  currentScreen.set('start');
+}
 
-  this.promotion = function () {};
-  this.demotion = function () {};
-  this.getTitle = function () {};
-
-  this.setPerf = function () {};
-  this.getPerf = function () {};
-  this.updatePerf = function () {};
-
-  this.setCurrentEvent = function () {};
-  this.getCurrentEvent = function () {};
-  this.newCurrentEvent = function () {};
-
-  this.setFlags = function () {};
-  this.checkFlags = function () {};
-
-  this.addEvents = function () {};
-  this.removeEvents = function () {};
-  this.randomEvent = function () {};
+// takes the event object and new screen and loads data
+function eventAdvance(event, screen) {
+  text.set(event[screen].text);
+  options.set(event[screen].opts);
 }
