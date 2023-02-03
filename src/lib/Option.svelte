@@ -1,11 +1,13 @@
 <script>
   export let text;
-  export let num;
-  
+  export let idx;
+  export let effects;
+  export let next;
+  export let advance;
 </script>
 
-<button class='option'>
-  <span class="option-num">{num}.</span><span class="option-text">{text}</span>
+<button on:click={() => advance(effects, next)} class='option'>
+  <span class="option-num">{idx}.</span><span class="option-text">{text}</span>
 </button>
 
 <style>

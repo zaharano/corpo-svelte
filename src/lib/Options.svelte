@@ -1,24 +1,26 @@
 <script>
   import Option from "./Option.svelte"
 
-  import { fly, fade } from 'svelte/transition'
-  import { textLoaded } from "../help/stores"
+  import { fly } from 'svelte/transition'
+  import { textLoaded, listening, currentScreen } from "./help/stores"
 
-  export let options = [
-    {
-      text: "Release this sucker and start raking in the accolades!",
-    },
-    {
-      text: "Compromises? No. This is my magnum opus, my gift to humankind. It will be perfect or it will be nothing.",
-    }
-  ]
+  export let options;
+  export let cycleDisplay;
+  
+  function advance(effects, next) {
+    listening.set(false);
+    textLoaded.set(false);
+    effects();
+    currentScreen.set(next);
+    cycleDisplay();
+  }
 </script>
 
 <div class="options">
   {#if $textLoaded }
-    {#each options as option, idx}
+    {#each $options as option, idx}
       <div in:fly={{ y: 50, duration: 1000, delay: idx * 700 + 500 }}>
-        <Option num={idx} {...option}/> 
+        <Option {idx} {...option} {advance}/> 
       </div>
     {/each}
   {/if}
@@ -27,6 +29,6 @@
 
 <style>
   .options {
-   margin: .5em 0;
+    margin: .5em 0;
   }
 </style>
