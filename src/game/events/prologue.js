@@ -1,4 +1,4 @@
-import { job } from 'src/help/stores';
+import { job } from 'src/lib/help/stores';
 
 export const prologue = {
   start: {
@@ -32,16 +32,16 @@ export const prologue = {
       {
         text: 'Take some time to ingratiate yourself to Merle',
         next: 'merleApproves',
-        effects: {
-          perf: 10,
-          years: 1,
+        effects: () => {
+          job.performanceChange(20);
+          job.timeChange(1);
         },
       },
       {
         text: "Spread vicious lies about Merle's work ethic.",
         next: 'busted',
-        effects: {
-          perf: -10,
+        effects: () => {
+          job.performanceChange(-25);
         },
       },
     ],
@@ -54,8 +54,8 @@ export const prologue = {
         disabled: 'gameDev',
         text: 'Plenty of time to focus now on your true passion, game development.',
         next: 'gameDev',
-        effects: {
-          years: 2,
+        effects: () => {
+          job.timeChange(2);
         },
       },
     ],
@@ -67,9 +67,7 @@ export const prologue = {
       {
         text: 'Onward and upward...',
         next: 'LeadsTo',
-        effects: {
-          perf: 10,
-        },
+        effects: () => {},
       },
     ],
   },
