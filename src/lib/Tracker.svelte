@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte';
 
-  import Timer from '../help/timer.js'
+  import Timer from './help/timer.js'
 
   let workTimer = new Timer('work');
   let inactiveTimer = new Timer('inactive');

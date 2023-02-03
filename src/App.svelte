@@ -3,12 +3,12 @@
   import Megacorp from './lib/screens/Megacorp.svelte';
   import ScreenHousing from './lib/ScreenHousing.svelte';
   import Display from './lib/screens/Display.svelte';
-  import ScreenContent from './lib/screens/ScreenContent.svelte';
+  import ScreenContent from './lib/ScreenContent.svelte';
   import Debug from './lib/Debug.svelte';
   
   import { onMount } from 'svelte';
 
-  let loading = 0;
+  let loading = 3;
   let loadingInterval;
 
   onMount(() => {
