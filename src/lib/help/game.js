@@ -9,7 +9,7 @@ import {
 } from './stores.js';
 
 // reset various state variables
-function gameInit() {
+function init() {
   job.init();
   flags.init();
   eventDeck.init();
@@ -32,8 +32,17 @@ function eventInit(eventName) {
   currentScreen.set('start');
 }
 
+// takes event, screen, and user's selected option index and resolves all effects
+function eventAdvance(event, screen, optidx) {
+  const selectedOpt = event[screen].opts[optidx];
+  selectedOpt.effects();
+  currentScreen.set(selectedOpt.next);
+}
+
 // takes the event object and new screen and loads data
-function eventAdvance(event, screen) {
+function loadScreen(event, screen) {
   text.set(event[screen].text);
   options.set(event[screen].opts);
 }
+
+export const game = { eventInit, eventAdvance, init, loadScreen };
