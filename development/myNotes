@@ -2,7 +2,6 @@ TODO figure out the text-shadow problem with typeout etc. I think its too expens
 
 ## Framework
 
-
 cProgress
 cJob
 cOptions
@@ -178,38 +177,41 @@ purge the buffer
 ╚═╝     ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝     
                                                                      
 
-end of prologue:
-generate department
-set level 1
-set title at 1
-set performance at C
-add the basic event deck
-
-promotion function
-remove promotion flag
-adds one level
-grabs new title
-check if level 6 {
-  add leveled events to deck
-}
-
-basic loop:
-check if event is flagged {
-  load event loop
-  resolve event screens (apply changes along way) until conclusion reached
-} else {
-  check focus for effect {
-    effect performance
-  }
-  check promotion flag or performance for promotion {
-    promote
-  }
-  flag a new event from deck
-}
-
-not a do loop
-first thing input handler does is disable further input.
-process the input.
-valid input makes stuff happen. invalid output does nothing, shows error, re-enables input.
+input handler 
+disable further input.
+process the input. (option exe)
+  valid input makes stuff happen. 
+  invalid output does nothing, shows error, re-enables input.
 
 end of option animation enables input
+
+outcomes:
+performance +/-
+time +
+promotion
+demotion
+new flag/effect
+new dept
+add events to deck
+
+after all that:
+check performance for promotion/demotion
+check attention for affect on performance
+
+event selector:
+shuffle event deck
+go through one at a time to see if qualified
+(by level, flag, etc)
+if reach the end of deck with no viable events, you lose
+'you've hit a real wall in your career. you kinda just give up'
+
+
+TODOS:
+set up event obj loader
+is the setup of effects OK?
+  if typeOf effects is function, effects()
+  else warn effects is not a function
+create a 'popup' component
+  hits when promoted/demoted or focus affects performance rating
+set up eventAdvance
+  select next event at random
