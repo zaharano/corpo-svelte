@@ -32,7 +32,6 @@
 
 	onMount(() => {
     newText = () => {
-      textLoaded.set(false)
       clear()
       let content = $text;
       let cArr = content.split("")
@@ -57,7 +56,7 @@
         }
         else {
           setTimeout(() => {
-            textLoaded.set(true)
+            textLoaded.toggle()
           }, 500);
           clearInterval(timer);
         }

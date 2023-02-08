@@ -153,30 +153,15 @@ export const currentEvent = writable({
 // string: current screen title
 export const currentScreen = writable('start');
 // string: current text
-export const text = writable('This is the default initial text');
+export const text = writable('');
 // array: current list of options objects
-export const options = writable([
-  {
-    text: 'Initial option 1',
-    next: 'toWork',
-    effects: () => {
-      job.performanceChange(10);
-      job.timeChange(1);
-    },
-  },
-  {
-    text: 'Initial option 2',
-    next: 'gameDev',
-    effects: () => {
-      job.performanceChange(-25);
-      job.timeChange(2);
-    },
-  },
-]);
+export const options = writable([]);
 // bool: whether currently listening for input
 export const listening = writable(false);
 // bool: whether text has finished loading
-export const textLoaded = writable(false);
+export const textLoaded = createToggle(false);
+export const popupOpen = createToggle(false);
+export const inGame = createToggle(false);
 export const job = createJob();
 // array: list of currently available events
 export const eventDeck = createEventDeck();
