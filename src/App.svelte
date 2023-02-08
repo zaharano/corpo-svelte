@@ -3,20 +3,20 @@
   import Megacorp from './lib/screens/Megacorp.svelte';
   import ScreenHousing from './lib/ScreenHousing.svelte';
   import Display from './lib/screens/Display.svelte';
-  import ScreenContent from './lib/ScreenContent.svelte';
   import Debug from './lib/Debug.svelte';
+  import ScreenEffects from './lib/ScreenEffects.svelte';
   
   import { onMount } from 'svelte';
 
-  let loading = 3;
+  import { inGame } from './lib/help/stores';
+
   let loadingInterval;
+  let loaded = false;
 
   onMount(() => {
-    loadingInterval = setInterval(() => {
-      console.log(loading)
-      loading += 1;
-      if (loading > 3) {clearInterval(loadingInterval)}
-    }, 3000)
+    loadingInterval = setTimeout(() => {
+      loaded = true;
+    }, 5000)
   })
 </script>
 
@@ -25,15 +25,17 @@
   <div class="app-container">
     <div class='screen-container'>
       <ScreenHousing />
-      <ScreenContent>
-        {#if loading <= 1}
-          <Runner />
-        {:else if loading == 2}
-          <Megacorp slot='content'/>
+      <ScreenEffects>
+        {#if !$inGame}
+          {#if !loaded}
+            <Runner />
+          {:else}
+            <Megacorp slot='content'/>
+          {/if}
         {:else}
           <Display slot='content' />
         {/if}
-      </ScreenContent>
+      </ScreenEffects>
     </div>
   </div>
 </main>
@@ -42,6 +44,7 @@
   main {
     text-align: center;
   }
+  
   .app-container {
     background-color: #282c34;
     min-height: 100vh;
