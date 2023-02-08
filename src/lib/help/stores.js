@@ -183,6 +183,28 @@ export const eventDeck = createEventDeck();
 export const flags = createFlags();
 export const effects = createEffects();
 
+function createAlert() {}
+
+function createToggle(initialValue) {
+  const { subscribe, set, update } = writable(initialValue);
+
+  const toggle = () => {
+    update((current) => {
+      return !current;
+    });
+  };
+
+  const init = () => {
+    set(initialValue);
+  };
+
+  return {
+    subscribe,
+    toggle,
+    init,
+  };
+}
+
 function createJob() {
   const INIT = {
     currentLevel: 0,
