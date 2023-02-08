@@ -2,11 +2,18 @@
   import { effects } from './help/stores.js'
 </script>
 
-<div class='screen-content-container' class:flicker='{$effects.flicker === true}'>
+<div class='screen-content-container main-display-styles' class:flicker='{$effects.flicker === true}'>
   <slot>No content</slot>
 </div>
 
 <style>
+  .main-display-styles {
+    font-family: var(--primary-font);
+    color: var(--text);
+    text-shadow: var(--text-glow);
+    filter: blur(0.03em);
+  }
+
   .screen-content-container {
     position: absolute;
     top: 14%;
