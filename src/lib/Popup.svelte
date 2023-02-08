@@ -1,15 +1,12 @@
 <script>
-import { popupOpen } from "./help/stores";
-
-  const clickHandler = () => {
-    popupOpen.set(false);
-  }
+  import Button from "./Button.svelte";
+  import { popupOpen } from "./help/stores";
 </script>
 
 <div class="popup-container">
   <div class="popup" class:closed='{$popupOpen === false}'>
     this is some conceptual popup text. testing to see where this goes and I think it's a propblem
-    <button on:click={clickHandler}>OK</button>
+    <Button clickHandler={popupOpen.toggle} text={'OK'} />
   </div>
 </div>
 
@@ -41,23 +38,5 @@ import { popupOpen } from "./help/stores";
     display: flex;
     flex-direction: column;
     pointer-events: all;
-  }
-  button {
-    display: block;
-    box-shadow: var(--line-glow), var(--line-glow) inset;
-    background-color: rgba(0,0,0,0);
-    color: var(--text);
-    border: 3px solid var(--text);
-    padding: 3px 10px;
-    font-size: inherit;
-    font-family: inherit;
-    margin-top: 1em;
-    cursor: pointer;
-  }
-
-  button:hover {
-    background-color: var(--text);
-    box-shadow: var(--box-glow);
-    color: var(--inversion);
   }
 </style>
