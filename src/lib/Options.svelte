@@ -9,7 +9,6 @@
   
   function advance(effects, next) {
     listening.set(false);
-    textLoaded.set(false);
     effects();
     currentScreen.set(next);
     cycleDisplay();
