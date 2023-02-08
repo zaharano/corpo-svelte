@@ -1,7 +1,15 @@
+<script>
+import { popupOpen } from "./help/stores";
+
+  const clickHandler = () => {
+    popupOpen.set(false);
+  }
+</script>
+
 <div class="popup-container">
-  <div class="popup">
+  <div class="popup" class:closed='{$popupOpen === false}'>
     this is some conceptual popup text. testing to see where this goes and I think it's a propblem
-    <button>OK</button>
+    <button on:click={clickHandler}>OK</button>
   </div>
 </div>
 
@@ -14,6 +22,15 @@
     align-items: center;
     justify-content: center;
     padding-left: 10%;
+    pointer-events: none;
+  }
+  .popup:global(.closing) {
+    pointer-events: none;
+    opacity: 0;
+  }
+  .popup:global(.closed) {
+    pointer-events: none;
+    display: none;
   }
   .popup {
     background-color: black;
@@ -23,6 +40,7 @@
     padding: 20px 30px;
     display: flex;
     flex-direction: column;
+    pointer-events: all;
   }
   button {
     display: block;
@@ -34,5 +52,12 @@
     font-size: inherit;
     font-family: inherit;
     margin-top: 1em;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: var(--text);
+    box-shadow: var(--box-glow);
+    color: var(--inversion);
   }
 </style>
