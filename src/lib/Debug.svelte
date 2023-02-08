@@ -53,12 +53,10 @@
   <br>
   Text: {$text} <br>
   Options: {$options}
-  <button on:click={() => text.set("butt no, this is the text. butt no, this is the text. butt no, this is the text. butt no, this is the text. butt no, this is the text. butt no, this is the text. butt no, this is the text. butt no, this is the text. ")}>New text</button>
-  <button on:click={() => text.set("wait this is the text now butt no, this is the text. butt no, this is the text. butt no, this is the text. butt no, this is the text. butt no, this is the text. ")}>New text 2</button>
 
-  <button on:click={() => game.loadScreen($currentEvent, $currentScreen)}>Load text</button>
-  <button on:click={() => game.eventAdvance($currentEvent, $currentScreen, 1)}>Select option 1</button>
-  <button on:click={() => popupOpen.set(true)}>Open Popup</button>
+  <!-- <button on:click={() => game.loadScreen($currentEvent, $currentScreen)}>Load text</button> -->
+  <!-- <button on:click={() => game.eventAdvance($currentEvent, $currentScreen, 1)}>Select option 1</button> -->
+  <button on:click={() => popupOpen.toggle()}>Open Popup</button>
 
 </div>
 
