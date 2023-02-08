@@ -4,21 +4,27 @@
   import Header from "./Header.svelte"
   import Footer from "./Footer.svelte"
   import Popup from "../Popup.svelte"
+  import { onMount } from "svelte"
 
-  import { text, options, currentEvent, currentScreen } from '../help/stores'
+  import { text, options, currentEvent, currentScreen, textLoaded} from '../help/stores'
 
   // TODO: figure out what to do with the scrollbar styling
-  // TODO: the prop passing (which is useless) is causing the repaint so we need to figure out how to do without
+  // TODO: the prop passing text (which is useless) is causing the repaint so we need to figure out how to do without
   function cycleDisplay() {
+    textLoaded.toggle();
     text.set($currentEvent[$currentScreen].text);
     options.set($currentEvent[$currentScreen].opts);
   }
+
+  onMount(() => {
+    cycleDisplay();
+  });
 </script>
 
 <div>
   <Header />
   <main>
-    <TypeOut {$text} />
+    <TypeOut />
     <Options {options} {cycleDisplay}/>
   </main>
   <Footer />
@@ -29,11 +35,7 @@
   div {
     text-align: left;
     line-height: 1.2;
-    font-family: var(--primary-font);
     font-size: 2.3vmin;
-    color: var(--text);
-    text-shadow: var(--text-glow);
-    filter: blur(0.03em);
     display: flex;
     flex-direction: column;
     height: 100%;
