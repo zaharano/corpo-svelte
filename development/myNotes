@@ -185,15 +185,18 @@ process the input. (option exe)
 
 end of option animation enables input
 
-outcomes:
-performance +/-
-time +
-promotion
-demotion
-new flag/effect
-new dept
-add events to deck
-
+effects:
+  updates:
+    performance +/-
+    time +
+  job
+    promotion
+    demotion
+    new department
+  flag
+    true/false
+  events:
+    add
 after all that:
 check performance for promotion/demotion
 check attention for affect on performance
@@ -208,10 +211,20 @@ if reach the end of deck with no viable events, you lose
 
 TODOS:
 set up event obj loader
+set up eventAdvance
+  shuffle deck, check first for qual, if no check next etc, if no mas fail the game
 is the setup of effects OK?
-  if typeOf effects is function, effects()
-  else warn effects is not a function
-create a 'popup' component
-  hits when promoted/demoted or focus affects performance rating
+  no, hate this function shit.
+  return to key:value pair of effects
+  create function or functions that interpret that into the necessary effects
+turn popup into an alert thing
+  on message hange - popup until closed
+  while open disable other input ? freeze text load?
+  when close reenable input
+  alerts when promoted/demoted or focus affects performance rating
 set up eventAdvance
   select next event at random
+
+Add a disabled state to option that disables hover and all listeners
+
+make new SVG have a larger viewBox - this will make the max size larger while not impacting lower end scaling
