@@ -1,5 +1,5 @@
 <script>
-  import { job, flags, eventDeck, currentEvent, currentScreen, effects, text, options} from './help/stores'
+  import { job, flags, eventDeck, currentEvent, currentScreen, effects, text, options, popupOpen } from './help/stores'
   import { game } from './help/game.js'
 
   let hidden = true;
@@ -43,7 +43,7 @@
   <br>
   Effects: <br>
   {#each Object.entries($effects) as [effect, value]}
-    {effect}: {value}<br>
+    &nbsp{effect}: {value}  ---  
   {/each}
   <!-- {@debug $effects} -->
   <button on:click={() => effects.toggle('flicker')}>Toggle flicker</button>
@@ -58,6 +58,7 @@
 
   <button on:click={() => game.loadScreen($currentEvent, $currentScreen)}>Load text</button>
   <button on:click={() => game.eventAdvance($currentEvent, $currentScreen, 1)}>Select option 1</button>
+  <button on:click={() => popupOpen.set(true)}>Open Popup</button>
 
 </div>
 
