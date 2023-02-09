@@ -56,7 +56,7 @@
         }
         else {
           setTimeout(() => {
-            textLoaded.toggle()
+            textLoaded.set(true)
           }, 500);
           clearInterval(timer);
         }

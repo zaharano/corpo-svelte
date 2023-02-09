@@ -11,7 +11,7 @@
   // TODO: figure out what to do with the scrollbar styling
   // TODO: the prop passing text (which is useless) is causing the repaint so we need to figure out how to do without
   function cycleDisplay() {
-    textLoaded.toggle();
+    textLoaded.set(false);
     text.set($currentEvent[$currentScreen].text);
     options.set($currentEvent[$currentScreen].opts);
   }
@@ -24,8 +24,12 @@
 <div>
   <Header />
   <main>
-    <TypeOut />
-    <Options {options} {cycleDisplay}/>
+    {#if text}
+      <TypeOut />
+    {/if}
+    {#if options}
+      <Options {options} {cycleDisplay}/>
+    {/if}
   </main>
   <Footer />
   <Popup />

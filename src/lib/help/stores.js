@@ -159,7 +159,7 @@ export const options = writable([]);
 // bool: whether currently listening for input
 export const listening = writable(false);
 // bool: whether text has finished loading
-export const textLoaded = createToggle(false);
+export const textLoaded = writable(false);
 export const popupOpen = createToggle(false);
 export const inGame = createToggle(false);
 export const job = createJob();
