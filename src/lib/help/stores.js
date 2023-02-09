@@ -200,7 +200,7 @@ function createJob() {
 
   const { subscribe, set, update } = writable(INIT);
 
-  const promote = () => {
+  const promotion = () => {
     update((j) => {
       return {
         ...j,
@@ -210,7 +210,7 @@ function createJob() {
     });
   };
 
-  const demote = () => {
+  const demotion = () => {
     update((j) => {
       return {
         ...j,
@@ -249,8 +249,8 @@ function createJob() {
 
   return {
     subscribe,
-    promote,
-    demote,
+    promotion: promotion,
+    demotion: demotion,
     newDepartment,
     performanceChange,
     timeChange: timePassed,

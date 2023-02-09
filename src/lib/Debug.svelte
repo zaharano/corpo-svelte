@@ -5,8 +5,8 @@
   let hidden = true;
 
   let at = [
-    job.promote,
-    job.promote,
+    job.promotion,
+    job.promotion,
     job.newDepartment
   ]
 
@@ -29,10 +29,10 @@
 
 
   <br>
-  <button on:click={job.promote}>Promote</button>
-  <button on:click={job.demote}>Demote</button>
+  <button on:click={job.promotion}>Promote</button>
+  <button on:click={job.demotion}>Demote</button>
   <button on:click={() => job.performanceChange(-5)}>Down 5 Performance</button>
-  <button on:click={() => job.timeChange(2)}>Add 2 years</button>
+  <button on:click={() => job.timePassed(2)}>Add 2 years</button>
   <button on:click={job.newDepartment}>New Department</button>
   <button on:click={execute}>Test sequence</button>
   <br>
