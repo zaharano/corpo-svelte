@@ -46,10 +46,6 @@
       }
 
       timer = setInterval(() => {
-        let prev = document.querySelector('.burn');
-        if (prev) {
-          prev.classList.remove('burn');
-        }
         if (revealed < cArr.length) {
           revealCharacter(revealed)
           revealed++;
