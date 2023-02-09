@@ -238,7 +238,7 @@ function createJob() {
     });
   };
 
-  const timeChange = (d) => {
+  const timePassed = (d) => {
     update((j) => {
       return {
         ...j,
@@ -253,7 +253,7 @@ function createJob() {
     demote,
     newDepartment,
     performanceChange,
-    timeChange,
+    timeChange: timePassed,
     init: () => set(INIT),
   };
 }
