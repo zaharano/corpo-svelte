@@ -1,12 +1,13 @@
 <script>
+  import {game} from './help/game'
+
   export let text;
   export let idx;
   export let effects;
   export let next;
-  export let advance;
 </script>
 
-<button on:click={() => advance(effects, next)} class='option'>
+<button on:click={() => game.eventAdvance(effects, next)} class='option'>
   <span class="option-num">{idx}.</span><span class="option-text">{text}</span>
 </button>
 

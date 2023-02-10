@@ -4,31 +4,21 @@
   import Header from "./Header.svelte"
   import Footer from "./Footer.svelte"
   import Popup from "../Popup.svelte"
-  import { onMount } from "svelte"
 
-  import { text, options, currentEvent, currentScreen, textLoaded} from '../help/stores'
+  import { text, options } from '../help/stores'
 
   // TODO: figure out what to do with the scrollbar styling
   // TODO: the prop passing text (which is useless) is causing the repaint so we need to figure out how to do without
-  function cycleDisplay() {
-    textLoaded.set(false);
-    text.set($currentEvent[$currentScreen].text);
-    options.set($currentEvent[$currentScreen].opts);
-  }
-
-  onMount(() => {
-    cycleDisplay();
-  });
 </script>
 
 <div>
   <Header />
   <main>
-    {#if text}
+    {#if $text}
       <TypeOut />
     {/if}
-    {#if options}
-      <Options {options} {cycleDisplay}/>
+    {#if $options}
+      <Options {options}/>
     {/if}
   </main>
   <Footer />
