@@ -47,7 +47,7 @@
   
   .app-container {
     background-color: #282c34;
-    min-height: 100vh;
+    min-height: 97.8vh;
     display: flex;
     flex-direction: column;
     align-items: center;
