@@ -40,6 +40,7 @@ export const inGame = createToggle(false);
 
 function createAlert() {}
 
+// generates generic toggle with limited control
 function createToggle(initialValue) {
   const { subscribe, set, update } = writable(initialValue);
 
@@ -60,26 +61,32 @@ function createToggle(initialValue) {
   };
 }
 
+// generates job object with custom controls
 function createJob() {
   const INIT = {
     currentLevel: 0,
     years: 0,
     department: 'Mail Room',
-    performance: 10,
+    title: 'Mail Jockey',
+    performance: 40,
   };
 
   const { subscribe, set, update } = writable(INIT);
 
+  // title index is -1, pre-update level is appropriate for pulling new title
+  // TODO: handle max level
   const promotion = () => {
     update((j) => {
       return {
         ...j,
         currentLevel: j.currentLevel + 1,
         performance: 50,
+        title: titles[j.currentLevel],
       };
     });
   };
 
+  // TODO: handle min level
   const demotion = () => {
     update((j) => {
       return {
@@ -119,17 +126,18 @@ function createJob() {
 
   return {
     subscribe,
-    promotion: promotion,
-    demotion: demotion,
+    promotion,
+    demotion,
     newDepartment,
     performanceChange,
-    timeChange: timePassed,
+    timePassed,
     init: () => set(INIT),
   };
 }
 
+// generates eventDeck array with custom controls
 function createEventDeck() {
-  const INIT = ['test1', 'test2'];
+  const INIT = ['beADick'];
 
   const { subscribe, set, update } = writable(INIT);
 
@@ -145,16 +153,17 @@ function createEventDeck() {
   };
 }
 
+// generates flags object with custom controls
 function createFlags() {
   const INIT = { test: true };
 
   const { subscribe, set, update } = writable(INIT);
 
-  const add = (flag) => {
+  const add = (flag, value) => {
     update((flags) => {
       return {
         ...flags,
-        [flag]: true,
+        [flag]: value,
       };
     });
   };
@@ -166,6 +175,7 @@ function createFlags() {
   };
 }
 
+// generates flags object with custom controls
 function createEffects() {
   const INIT = {
     typeSpeed: 20,
