@@ -237,6 +237,8 @@ set up eventAdvance
       select one
       if none, end game
 implement a gameover
+implement focus effect on performance
+implement performance leading to promotion/demotion
 implement option qualification -
   in terms of option data, and in terms of render
 test the event advancer
