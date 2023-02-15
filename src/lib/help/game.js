@@ -59,18 +59,35 @@ function eventAdvance(effects, next) {
 }
 
 function cycleDisplay(newText, newOptions) {
-  text.set(newText);
+  console.log(newText);
+  text.set(fillVars(newText));
+  // switch options to fill text vars if they ever use vars
   options.set(newOptions);
 }
 
+function fillVars(text) {
+  const currentJob = get(job);
+  return text.replace(/%ENEMY|%DEPT|%TITLE/g, (v) => {
+    switch (v) {
+      case '%ENEMY':
+        if (currentJob.enemies.length) return currentJob.enemies[0];
+        else return 'Gary Oak';
+      case '%DEPT':
+        return currentJob.department;
+      case '%TITLE':
+        return currentJob.title;
+    }
+  });
+}
+
 function resolveEffects(effects) {
-  // For feference, all possible keys in effects block
+  // For reference, all possible keys in effects block
   // effects: {
   //   job: {
-  //     performanceChange: 0,
-  //     timePassed: 0,
-  //     promotion: false,
-  //     demotion: false,
+  //     performanceChange: int,
+  //     timePassed: int,
+  //     promotion: bool,
+  //     demotion: bool,
   //     newDept: 'generate' or '{specify}'
   //   },
   //   flags: {newFlag: true},
@@ -79,7 +96,7 @@ function resolveEffects(effects) {
   //   alert: 'Alert message,'
   //   gameOver: false,
   // }
-  // All job keys are in fact methods of job store
+  // All job keys are methods of job store
   if (effects.gameOver === true) return 0;
   if (effects.job) {
     for (const [func, value] of Object.entries(effects.job)) {
