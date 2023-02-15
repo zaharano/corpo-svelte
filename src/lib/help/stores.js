@@ -1,9 +1,17 @@
 import { writable } from 'svelte/store';
 import generateDepartment from './department';
+import generateEnemy from './enemies';
 import titles from './titles';
 
 // object: job tracks data about progress in current game
-export const job = createJob();
+export const job = createJob({
+  currentLevel: 0,
+  years: 0,
+  department: 'Mail Room',
+  title: 'Mail Jockey',
+  performance: 40,
+  enemies: [],
+});
 
 // object: flags tracks decisions that have occurred in current game
 export const flags = createFlags();
@@ -38,7 +46,7 @@ export const textLoaded = writable(false);
 export const popupOpen = createToggle(false);
 export const inGame = createToggle(false);
 
-function createAlert() {}
+export const alert = writable('');
 
 // generates generic toggle with limited control
 function createToggle(initialValue) {
@@ -62,46 +70,54 @@ function createToggle(initialValue) {
 }
 
 // generates job object with custom controls
-function createJob() {
-  const INIT = {
-    currentLevel: 0,
-    years: 0,
-    department: 'Mail Room',
-    title: 'Mail Jockey',
-    performance: 40,
-  };
-
+function createJob(INIT) {
   const { subscribe, set, update } = writable(INIT);
 
   // title index is -1, pre-update level is appropriate for pulling new title
   // TODO: handle max level
-  const promotion = () => {
-    update((j) => {
-      return {
-        ...j,
-        currentLevel: j.currentLevel + 1,
-        performance: 50,
-        title: titles[j.currentLevel],
-      };
-    });
+  const promotion = (message) => {
+    if (message !== false) {
+      update((j) => {
+        return {
+          ...j,
+          currentLevel: j.currentLevel + 1,
+          performance: 50,
+          title: titles[j.currentLevel],
+        };
+      });
+    }
+    // TODO: call alert, common func?
   };
 
   // TODO: handle min level
-  const demotion = () => {
-    update((j) => {
-      return {
-        ...j,
-        currentLevel: j.currentLevel - 1,
-        performance: 50,
-      };
-    });
+  const demotion = (message) => {
+    if (message !== false) {
+      update((j) => {
+        return {
+          ...j,
+          currentLevel: j.currentLevel - 1,
+          performance: 50,
+        };
+      });
+    }
+    // TODO: call alert, common func?
   };
 
+  // TODO: allow param to set Dept if not 'generate'
   const newDepartment = () => {
     update((j) => {
       return {
         ...j,
         department: generateDepartment(),
+      };
+    });
+  };
+
+  const newEnemy = () => {
+    update((j) => {
+      return {
+        ...j,
+        enemies: [...j.enemies, generateEnemy()],
       };
     });
   };
