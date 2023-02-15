@@ -17,11 +17,11 @@ function generateDepartment() {
     'Intelligence',
     'Innovations',
   ];
-  function getRandomItem(arr) {
+  function getRandom(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
   }
 
-  return `${getRandomItem(PREFIXES)} ${getRandomItem(SUFFIXES)}`;
+  return `${getRandom(PREFIXES)} ${getRandom(SUFFIXES)}`;
 }
 
 export default generateDepartment;
