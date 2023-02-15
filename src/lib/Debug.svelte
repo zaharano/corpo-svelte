@@ -4,18 +4,6 @@
 
   let hidden = true;
 
-  let at = [
-    job.promotion,
-    job.promotion,
-    job.newDepartment
-  ]
-
-  function execute() {
-    for (let i = 0; i < at.length; i++) {
-      at[i]()
-    }
-  }
-
   document.addEventListener("keydown", (e) => {
     if (e.key === '`') hidden = !hidden
   })
@@ -34,7 +22,6 @@
   <button on:click={() => job.performanceChange(-5)}>Down 5 Performance</button>
   <button on:click={() => job.timePassed(2)}>Add 2 years</button>
   <button on:click={job.newDepartment}>New Department</button>
-  <button on:click={execute}>Test sequence</button>
   <br>
   Event Deck: {$eventDeck}
   Current Event: {$currentEvent}
