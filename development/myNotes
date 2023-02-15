@@ -60,15 +60,21 @@ if you have a cognitive augment
 outsmart them promotion and job approval +
 
 YOUR MANAGER DEMANDS YOU WORK WEEKENDS
+hijinks ensue
 
 SECURITY THINKS YOURE A CORPO SPY
+securityIsSniffing
 if youre level 8 or up use your connections to get out
 else
 plead innocence
 long event ---
 
 YOURE APPROACHED BY RIVAL CORP TO SPY
+helloOmnitech
 long event ---
+
+RIVAL CORP SENDS ASSASSINS
+helloWeyland
 
 YOU SEE YOUR COWORKER DOING SOMETHING SUSPICIOUS
 long event ---
@@ -86,8 +92,8 @@ opens up replicant wants freedom
 refuse to work with replicants
 lose ground - neg performance and time 
 
-
-YOU SUFFER SOME COLLATERAL DAMAGE of some Yakuza warfare 
+helloSyndicate
+YOU SUFFER SOME COLLATERAL DAMAGE of some Syndicate warfare 
 they offer to buy you some artificial stuff to keep you quiet time x1
 -opens up owe them a favor
 -opens up augments get you ahead job +3
@@ -96,6 +102,7 @@ they offer to buy you some artificial stuff to keep you quiet time x1
 say no to the offer, have to recover - time x4
 
 level 5+
+truthInJournalism
 YOU ARE APPROACHED BY A JOURNALIST WHO WANTS TO EXPOSE SOMETHING AT MEGACORP
 use to your advantage
 dont risk it
@@ -117,8 +124,8 @@ Heck yeh Promotion
 opens retribution
 nah nothing
 
-if Yakuza gave you some augments
-YAKUZA CALLS IN THE FAVOR
+if Syndicate gave you some augments
+Syndicate CALLS IN THE FAVOR
 --do it time x2 job -1
 --dont do it you ded
 
@@ -186,17 +193,31 @@ process the input. (option exe)
 end of option animation enables input
 
 effects:
-  updates:
+  job
     performance +/-
     time +
-  job
     promotion
     demotion
     new department
-  flag
+  flags
     true/false
-  events:
+  events
     add
+effects: {
+  job: {
+    performanceChange: 0,
+    timePassed: 1,
+    promotion: true,
+    demotion: false,
+    newDept: false,
+  },
+  flags: {},
+  events: [],
+  eventComplete: false,
+  alert: 'Alert message',
+  gameOver: true
+},
+
 after all that:
 check performance for promotion/demotion
 check attention for affect on performance
@@ -210,21 +231,22 @@ if reach the end of deck with no viable events, you lose
 
 
 TODOS:
-set up event obj loader
 set up eventAdvance
-  shuffle deck, check first for qual, if no check next etc, if no mas fail the game
-is the setup of effects OK?
-  no, hate this function shit.
-  return to key:value pair of effects
-  create function or functions that interpret that into the necessary effects
+  set up event selector
+    filter for qualifying events
+      select one
+      if none, end game
+implement a gameover
+implement option qualification -
+  in terms of option data, and in terms of render
+test the event advancer
 turn popup into an alert thing
-  on message hange - popup until closed
+  on message change - popup
   while open disable other input ? freeze text load?
   when close reenable input
   alerts when promoted/demoted or focus affects performance rating
-set up eventAdvance
-  select next event at random
 
 Add a disabled state to option that disables hover and all listeners
 
 make new SVG have a larger viewBox - this will make the max size larger while not impacting lower end scaling
+

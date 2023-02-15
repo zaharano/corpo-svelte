@@ -1,3 +1,8 @@
+// variables to be filled at time of display are
+//    %ENEMY: The first enemy from the enemy stack
+//    %DEPT: The player's department
+//    %TITLE: The player's title
+
 const events = {
   prologue: {
     start: {
