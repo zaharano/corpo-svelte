@@ -95,10 +95,10 @@ const events = {
       opts: [
         {
           text: 'Onward and upward...',
-          next: '',
+          next: null,
           effects: {
             job: {
-              promotion: true,
+              promotion: 'Good job!',
             },
             eventComplete: true,
           },
@@ -175,6 +175,22 @@ const events = {
         {
           text: 'Start over',
           next: 'restart',
+          effects: {
+            gameOver: true,
+          },
+        },
+      ],
+    },
+  },
+
+  hitAWall: {
+    start: {
+      title: 'Well this is going nowhere...',
+      text: "One day you felt the wind beneath your wings, soaring up the ranks, and then... wham. You hit a cieling. People stop putting exclamation marks in ever message they send you. People stop inviting you to their unneccesarry meetings that you wouldn't have gone to anyway, but it was nice to at least be invited. You're just... here. Doing the work.",
+      opts: [
+        {
+          text: "I'll get 'em next time.",
+          next: null,
           effects: {
             gameOver: true,
           },

@@ -1,5 +1,5 @@
 <script>
-  import { job, flags, eventDeck, currentEvent, currentScreen, effects, text, options, popupOpen } from './help/stores'
+  import { job, flags, eventDeck, currentEvent, currentScreen, effects, text, options, popupOpen, currentEventTitle } from './help/stores'
   import { game } from './help/game.js'
 
   let hidden = true;
@@ -14,6 +14,7 @@
   Years: {$job.years}
   Department: {$job.department}
   Job Performance: {$job.performance}
+  Enemies: {$job.enemies}
 
 
   <br>
@@ -21,10 +22,11 @@
   <button on:click={job.demotion}>Demote</button>
   <button on:click={() => job.performanceChange(-5)}>Down 5 Performance</button>
   <button on:click={() => job.timePassed(2)}>Add 2 years</button>
-  <button on:click={job.newDepartment}>New Department</button>
+  <button on:click={() => job.newDepartment()}>New Department</button>
+  <button on:click={() => job.newEnemy()}>New Enemy</button>
   <br>
   Event Deck: {$eventDeck}
-  Current Event: {$currentEvent}
+  Current Event: {$currentEventTitle}
   <br>
   <button on:click={() => eventDeck.add(['new event'])}>Add new event</button>
   <br>
