@@ -70,17 +70,22 @@ function cycleDisplay(newText, newOptions) {
 
 function fillVars(text) {
   const currentJob = get(job);
-  return text.replace(/%ENEMY|%DEPT|%TITLE/g, (v) => {
-    switch (v) {
-      case '%ENEMY':
-        if (currentJob.enemies.length) return currentJob.enemies[0];
-        else return 'Gary Oak';
-      case '%DEPT':
-        return currentJob.department;
-      case '%TITLE':
-        return currentJob.title;
-    }
-  });
+  if (typeof text === 'string') {
+    return text.replace(/%ENEMY|%DEPT|%TITLE/g, (v) => {
+      switch (v) {
+        case '%ENEMY':
+          if (currentJob.enemies.length) return currentJob.enemies[0];
+          else return 'Gary Oak';
+        case '%DEPT':
+          return currentJob.department;
+        case '%TITLE':
+          return currentJob.title;
+      }
+    });
+  } else {
+    console.warn('attempting to replace vars in a non-string.');
+    return text;
+  }
 }
 
 function resolveEffects(effects) {
@@ -101,28 +106,30 @@ function resolveEffects(effects) {
   //   gameOver: bool,
   // }
   // All job keys are methods of job store
-  if (effects.gameOver === true) return 0;
-  if (effects.job) {
-    for (let [func, value] of Object.entries(effects.job)) {
-      // promotions and demotions can carry alerts with vars
-      if (func === 'promotion' || func === 'demotion') {
-        if (typeof value === 'string') value = fillVars(value);
+  if (effects) {
+    if (effects.gameOver === true) return 0;
+    if (effects.job) {
+      for (let [func, value] of Object.entries(effects.job)) {
+        // promotions and demotions can carry alerts with vars
+        if (func === 'promotion' || func === 'demotion') {
+          if (typeof value === 'string') value = fillVars(value);
+        }
+        job[func](value);
       }
-      job[func](value);
     }
-  }
-  if (effects.flags) {
-    for (const [flag, value] of Object.entries(effects.flags)) {
-      flags.add(flag, value);
+    if (effects.flags) {
+      for (const [flag, value] of Object.entries(effects.flags)) {
+        flags.add(flag, value);
+      }
     }
+    if (effects.events && effects.events.length) {
+      eventDeck.add(effects.events);
+    }
+    if (effects.alert && effects.alert.length) {
+      alert.set(effects.alert);
+    }
+    if (effects.eventComplete === true) return 1;
   }
-  if (effects.events && effects.events.length) {
-    eventDeck.add(effects.events);
-  }
-  if (effects.alert && effects.alert.length) {
-    alert.set(effects.alert);
-  }
-  if (effects.eventComplete === true) return 1;
 }
 
 function loadPrevious() {
@@ -134,4 +141,5 @@ export const game = {
   initialize,
   loadPrevious,
   eventAdvance,
+  cycleDisplay,
 };
