@@ -99,7 +99,11 @@ function resolveEffects(effects) {
   // All job keys are methods of job store
   if (effects.gameOver === true) return 0;
   if (effects.job) {
-    for (const [func, value] of Object.entries(effects.job)) {
+    for (let [func, value] of Object.entries(effects.job)) {
+      // promotions and demotions can carry alerts with vars
+      if (func === 'promotion' || func === 'demotion') {
+        value = fillVars(value);
+      }
       job[func](value);
     }
   }
