@@ -16,7 +16,7 @@
   onMount(() => {
     loadingInterval = setTimeout(() => {
       loaded = true;
-    }, 5000)
+    }, 200)
   })
 </script>
 
