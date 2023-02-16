@@ -111,21 +111,27 @@ function createJob(INIT) {
     // TODO: call alert, common func?
   };
 
-  // TODO: allow param to set Dept if not 'generate'
-  const newDepartment = () => {
+  // if newDepartment or newEnemy called 'auto' or w/o string they generate
+  const newDepartment = (name) => {
+    if (typeof name !== 'string' || name === 'auto') {
+      name = generateDepartment();
+    }
     update((j) => {
       return {
         ...j,
-        department: generateDepartment(),
+        department: name,
       };
     });
   };
 
-  const newEnemy = () => {
+  const newEnemy = (name) => {
+    if (typeof name !== 'string' || name === 'auto') {
+      name = generateEnemy();
+    }
     update((j) => {
       return {
         ...j,
-        enemies: [...j.enemies, generateEnemy()],
+        enemies: [...j.enemies, name],
       };
     });
   };
@@ -153,6 +159,7 @@ function createJob(INIT) {
     promotion,
     demotion,
     newDepartment,
+    newEnemy,
     performanceChange,
     timePassed,
     init: () => set(INIT),
