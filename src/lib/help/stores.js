@@ -14,13 +14,21 @@ export const job = createJob({
 });
 
 // object: flags tracks decisions that have occurred in current game
-export const flags = createFlags();
+export const flags = createFlags({ test: true });
 
 // object: effects tracks certain visual effects in current game
-export const effects = createEffects();
+export const effects = createEffects({
+  typeSpeed: 20,
+  flicker: false,
+  corruption: false,
+  ghost: false,
+});
 
 // array: list of currently available events
-export const eventDeck = createEventDeck();
+export const eventDeck = createEventDeck([
+  { title: 'beADick', lvlreq: 0 },
+  { title: 'aThirdEvent', lvlreq: 0 },
+]);
 
 // object: current event object
 export const currentEvent = writable({});
@@ -152,9 +160,7 @@ function createJob(INIT) {
 }
 
 // generates eventDeck array with custom controls
-function createEventDeck() {
-  const INIT = ['beADick'];
-
+function createEventDeck(INIT) {
   const { subscribe, set, update } = writable(INIT);
 
   const select = () => {
@@ -170,9 +176,7 @@ function createEventDeck() {
 }
 
 // generates flags object with custom controls
-function createFlags() {
-  const INIT = { test: true };
-
+function createFlags(INIT) {
   const { subscribe, set, update } = writable(INIT);
 
   const add = (flag, value) => {
@@ -192,14 +196,7 @@ function createFlags() {
 }
 
 // generates flags object with custom controls
-function createEffects() {
-  const INIT = {
-    typeSpeed: 20,
-    flicker: false,
-    corruption: false,
-    ghost: false,
-  };
-
+function createEffects(INIT) {
   const { subscribe, set, update } = writable(INIT);
 
   const toggle = (effect) => {
