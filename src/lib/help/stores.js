@@ -5,7 +5,7 @@ import titles from './titles';
 
 // object: job tracks data about progress in current game
 export const job = createJob({
-  currentLevel: 0,
+  level: 0,
   years: 0,
   department: 'Mail Room',
   title: 'Mail Jockey',
@@ -18,7 +18,7 @@ export const flags = createFlags({ test: true });
 
 // object: effects tracks certain visual effects in current game
 export const effects = createEffects({
-  typeSpeed: 20,
+  typeSpeed: 0.0001,
   flicker: false,
   corruption: false,
   ghost: false,
@@ -88,9 +88,9 @@ function createJob(INIT) {
       update((j) => {
         return {
           ...j,
-          currentLevel: j.currentLevel + 1,
+          level: j.level + 1,
           performance: 50,
-          title: titles[j.currentLevel],
+          title: titles[j.level],
         };
       });
       alert.set(message);
@@ -103,8 +103,9 @@ function createJob(INIT) {
       update((j) => {
         return {
           ...j,
-          currentLevel: j.currentLevel - 1,
+          level: j.level - 1,
           performance: 50,
+          title: titles[j.level],
         };
       });
       alert.set(message);
@@ -183,7 +184,7 @@ function createEventDeck(INIT) {
         selected =
           qualifiedEvents[Math.floor(Math.random() * qualifiedEvents.length)]
             .title;
-        return deck.filter((ev) => ev.title !== selected.title);
+        return deck.filter((ev) => ev.title !== selected);
       }
     });
     return selected;
