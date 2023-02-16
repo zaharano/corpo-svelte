@@ -94,7 +94,7 @@ function createJob(INIT) {
         };
       });
     }
-    // TODO: call alert, common func?
+    alert.set(message);
   };
 
   // TODO: handle min level
@@ -108,7 +108,7 @@ function createJob(INIT) {
         };
       });
     }
-    // TODO: call alert, common func?
+    alert.set(message);
   };
 
   // if newDepartment or newEnemy called 'auto' or w/o string they generate
