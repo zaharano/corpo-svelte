@@ -10,7 +10,7 @@
 </script>
 
 <div class="debug-console" class:hidden='{hidden === true}'>
-  Level: {$job.currentLevel}
+  Level: {$job.level}
   Years: {$job.years}
   Department: {$job.department}
   Job Performance: {$job.performance}
@@ -25,10 +25,16 @@
   <button on:click={() => job.newDepartment()}>New Department</button>
   <button on:click={() => job.newEnemy()}>New Enemy</button>
   <br>
-  Event Deck: {$eventDeck}
+  
+  Event Deck: {#each $eventDeck as event}
+   {event.title} - req: {event.lvlreq}
+  {/each}
   Current Event: {$currentEventTitle}
   <br>
-  <button on:click={() => eventDeck.add(['new event'])}>Add new event</button>
+  <button on:click={() => eventDeck.add([{ title: 'new event', lvlreq: 2 }])}>Add new event</button>
+  <button on:click={() => {
+    game.eventAdvance(null, 'merleApproves')
+  }}>Test event advance</button>
   <br>
   Effects: <br>
   {#each Object.entries($effects) as [effect, value]}
