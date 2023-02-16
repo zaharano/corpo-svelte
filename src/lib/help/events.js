@@ -7,7 +7,7 @@ const events = {
   prologue: {
     start: {
       title: 'Welcome to Megacorp!',
-      text: "It's your first day in the mail room at Megacorp! Thanks to your shady Uncle Harrison, Director of South American Regional Logistics, you've been given your shot at the corporate world. The mail room isn't the best shot, seeing as it's the year 2085 and nobody sends mail any more, but it's the one you've been given so damnit you're gonna give it your all! Your manager Merle has been at Megacorp for 30 years, and is eager to show you the ropes.",
+      text: "It's your first day in the mail room at Megacorp! Thanks to your shady Uncle Harrison, Under-Director of South American Regional Logistics, you've been given your shot at the corporate world. The mail room isn't the best shot, seeing as it's the year 2085 and nobody sends mail any more, but it's the one you've been given so damnit you're gonna give it your all! Your manager Merle has been at Megacorp for 30 years, and is eager to show you the ropes.",
       opts: [
         {
           text: 'Get to work!',
@@ -187,6 +187,19 @@ const events = {
     start: {
       title: 'An Opportunity Presents Itself',
       text: 'One day on your way to the mandated 11:15 standup',
+      opts: [
+        {
+          text: 'Option 1 text',
+          next: 'Option 1 next',
+        },
+      ],
+    },
+  },
+
+  aThirdEvent: {
+    start: {
+      title: 'Start Screen Title!',
+      text: 'Start Screen text!',
       opts: [
         {
           text: 'Option 1 text',
