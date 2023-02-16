@@ -7,6 +7,8 @@ function generateDepartment() {
     'Advanced',
     'Artificial',
     'Offworld',
+    'Flubber',
+    '"Defence"',
   ];
   const SUFFIXES = [
     'Nanotech',
@@ -16,6 +18,7 @@ function generateDepartment() {
     'Infotech',
     'Intelligence',
     'Innovations',
+    'Robotics',
   ];
   function getRandom(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
