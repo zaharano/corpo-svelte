@@ -1,4 +1,4 @@
-import { writable } from 'svelte/store';
+import { get, writable } from 'svelte/store';
 import generateDepartment from './department';
 import generateEnemy from './enemies';
 import titles from './titles';
@@ -24,37 +24,33 @@ export const effects = createEffects({
   ghost: false,
 });
 
-// array: list of currently available events
+// array (objects): list of currently available events
 export const eventDeck = createEventDeck([
   { title: 'beADick', lvlreq: 0 },
   { title: 'aThirdEvent', lvlreq: 0 },
 ]);
 
+// array (strings): list of forced events (handled as queue)
+export const forcedEvents = writable([]);
+
 // object: current event object
 export const currentEvent = writable({});
-
 // string: current event title
 export const currentEventTitle = writable('');
-
 // string: current screen title
 export const currentScreen = writable('');
-
 // string: current text
 export const text = writable('');
-
 // array (objects): current list of options
 export const options = writable([]);
+export const alert = writable('');
 
 // bool: whether currently listening for input
 export const listening = writable(false);
-
 // bool: whether text has finished loading
 export const textLoaded = writable(false);
-
 export const popupOpen = createToggle(false);
 export const inGame = createToggle(false);
-
-export const alert = writable('');
 
 // generates generic toggle with limited control
 function createToggle(initialValue) {
@@ -81,6 +77,10 @@ function createToggle(initialValue) {
 function createJob(INIT) {
   const { subscribe, set, update } = writable(INIT);
 
+  const MAXLEVEL = titles.length;
+  const MINLEVEL = 1;
+  const MAXYEARS = 146;
+
   // title index is -1, pre-update level is appropriate for pulling new title
   // TODO: handle max level
   const promotion = (message) => {
@@ -93,8 +93,8 @@ function createJob(INIT) {
           title: titles[j.currentLevel],
         };
       });
+      alert.set(message);
     }
-    alert.set(message);
   };
 
   // TODO: handle min level
@@ -107,8 +107,8 @@ function createJob(INIT) {
           performance: 50,
         };
       });
+      alert.set(message);
     }
-    alert.set(message);
   };
 
   // if newDepartment or newEnemy called 'auto' or w/o string they generate
@@ -162,6 +162,8 @@ function createJob(INIT) {
     newEnemy,
     performanceChange,
     timePassed,
+    MAXLEVEL,
+    MAXYEARS,
     init: () => set(INIT),
   };
 }
@@ -171,7 +173,20 @@ function createEventDeck(INIT) {
   const { subscribe, set, update } = writable(INIT);
 
   const select = () => {
-    // pick an event at random
+    let selected;
+    update((deck) => {
+      let qualifiedEvents = deck.filter((ev) => ev.lvlreq <= get(job).level);
+      if (qualifiedEvents.length < 1) {
+        selected = 'hitAWall';
+        return deck;
+      } else {
+        selected =
+          qualifiedEvents[Math.floor(Math.random() * qualifiedEvents.length)]
+            .title;
+        return deck.filter((ev) => ev.title !== selected.title);
+      }
+    });
+    return selected;
   };
 
   return {
