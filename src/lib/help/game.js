@@ -3,12 +3,14 @@ import {
   flags,
   eventDeck,
   currentEvent,
+  currentEventTitle,
   currentScreen,
   text,
   options,
   textLoaded,
   listening,
   inGame,
+  alert,
 } from './stores.js';
 
 import { get } from 'svelte/store';
@@ -37,6 +39,7 @@ function checkMetrics() {
 // initializes a new event, given its name
 function eventInit(eventName) {
   const newEvent = eventServer(eventName);
+  currentEventTitle.set(eventName);
   currentEvent.set(newEvent);
   currentScreen.set('start');
   cycleDisplay(newEvent.start.text, newEvent.start.opts);
@@ -52,6 +55,7 @@ function eventAdvance(effects, next) {
     const nextEvent = eventDeck.select();
     eventInit(nextEvent);
   } else {
+    // if there's no next, error
     currentScreen.set(next);
     const event = get(currentEvent);
     cycleDisplay(event[next].text, event[next].opts);
@@ -59,7 +63,6 @@ function eventAdvance(effects, next) {
 }
 
 function cycleDisplay(newText, newOptions) {
-  console.log(newText);
   text.set(fillVars(newText));
   // switch options to fill text vars if they ever use vars
   options.set(newOptions);
@@ -88,13 +91,14 @@ function resolveEffects(effects) {
   //     timePassed: int,
   //     promotion: bool,
   //     demotion: bool,
-  //     newDept: 'generate' or '{specify}'
+  //     newDept: 'auto' or other string
+  //     newEnemy: 'auto' or other string
   //   },
   //   flags: {newFlag: true},
-  //   events: ['newEvent'],
-  //   eventComplete: false,
-  //   alert: 'Alert message,'
-  //   gameOver: false,
+  //   events: [{ title: string, lvlreq: int }],
+  //   alert: string,
+  //   eventComplete: bool,
+  //   gameOver: bool,
   // }
   // All job keys are methods of job store
   if (effects.gameOver === true) return 0;
@@ -102,7 +106,7 @@ function resolveEffects(effects) {
     for (let [func, value] of Object.entries(effects.job)) {
       // promotions and demotions can carry alerts with vars
       if (func === 'promotion' || func === 'demotion') {
-        value = fillVars(value);
+        if (typeof value === 'string') value = fillVars(value);
       }
       job[func](value);
     }
@@ -112,22 +116,14 @@ function resolveEffects(effects) {
       flags.add(flag, value);
     }
   }
-  if (effects.events) {
+  if (effects.events && effects.events.length) {
     eventDeck.add(effects.events);
   }
-  if (effects.alert) {
-    // TODO: implement alert
+  if (effects.alert && effects.alert.length) {
+    alert.set(effects.alert);
   }
   if (effects.eventComplete === true) return 1;
 }
-
-// TODO: PROBABLY TRASH GIVEN ARCHITECTURE EVOLUTION
-// takes the event object and new screen and loads data
-// function loadScreen(event, screen) {
-//   textLoaded.toggle();
-//   text.set(event[screen].text);
-//   options.set(event[screen].opts);
-// }
 
 function loadPrevious() {
   // placeholder
