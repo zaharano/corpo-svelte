@@ -1,3 +1,5 @@
+import getRandom from './utils';
+
 function generateEnemy() {
   const FIRSTS = [
     'Alfred',
@@ -25,9 +27,6 @@ function generateEnemy() {
     'Upperton',
     'Winthrope',
   ];
-  function getRandom(arr) {
-    return arr[Math.floor(Math.random() * arr.length)];
-  }
 
   return `${getRandom(FIRSTS)} ${getRandom(MIS)} ${getRandom(LASTS)}`;
 }

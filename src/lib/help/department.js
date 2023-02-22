@@ -1,3 +1,5 @@
+import getRandom from './utils';
+
 function generateDepartment() {
   const PREFIXES = [
     'Consumer',
@@ -20,9 +22,6 @@ function generateDepartment() {
     'Innovations',
     'Robotics',
   ];
-  function getRandom(arr) {
-    return arr[Math.floor(Math.random() * arr.length)];
-  }
 
   return `${getRandom(PREFIXES)} ${getRandom(SUFFIXES)}`;
 }
