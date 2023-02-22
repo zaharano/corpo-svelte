@@ -5,6 +5,11 @@
 
 const events = {
   prologue: {
+    details: {
+      levelReq: 0,
+      flagReq: [],
+      explicitOnly: true,
+    },
     start: {
       title: 'Welcome to Megacorp!',
       text: "It's your first day in the mail room at Megacorp! Thanks to your shady Uncle Harrison, Under-Director of South American Regional Logistics, you've been given your shot at the corporate world. The mail room isn't the best shot, seeing as it's the year 2085 and nobody sends mail any more, but it's the one you've been given so damnit you're gonna give it your all! Your manager Merle has been at Megacorp for 30 years, and is eager to show you the ropes.",
@@ -58,6 +63,7 @@ const events = {
             job: {
               performanceChange: -25,
               timePassed: 1,
+              newEnemy: 'Merle',
             },
             flags: {
               meanToMerle: true,
@@ -98,7 +104,9 @@ const events = {
           next: null,
           effects: {
             job: {
-              promotion: 'Good job!',
+              newDepartment: 'auto',
+              promotion:
+                'Congratulations on your promotion to %TITLE in the %DEPT department. If you are unhappy with your assigned department, please fill out a 92-3-cb and submit it to your designated HR representative: <REPRESENTATIVE NOT FOUND>',
             },
             eventComplete: true,
           },
@@ -184,6 +192,11 @@ const events = {
   },
 
   hitAWall: {
+    details: {
+      levelReq: 0,
+      flagReq: [],
+      explicitOnly: true,
+    },
     start: {
       title: 'Well this is going nowhere...',
       text: "One day you felt the wind beneath your wings, soaring up the ranks, and then... wham. You hit a cieling. People stop putting exclamation marks in ever message they send you. People stop inviting you to their unneccesarry meetings that you wouldn't have gone to anyway, but it was nice to at least be invited. You're just... here. Doing the work.",
@@ -200,6 +213,11 @@ const events = {
   },
 
   beADick: {
+    details: {
+      levelReq: 0,
+      flagReq: [],
+      explicitOnly: false,
+    },
     start: {
       title: 'An Opportunity Presents Itself',
       text: 'One day on your way to the mandated 11:15 standup',
@@ -213,6 +231,11 @@ const events = {
   },
 
   aThirdEvent: {
+    details: {
+      levelReq: 1,
+      flagReq: [],
+      explicitOnly: true,
+    },
     start: {
       title: 'Start Screen Title!',
       text: 'Start Screen text!',
