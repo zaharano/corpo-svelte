@@ -106,16 +106,11 @@ function resolveEffects(effects) {
   //   gameOver: bool,
   // }
   // All job keys are methods of job store
+  let alertText = '';
   if (effects) {
     if (effects.gameOver === true) return 0;
     if (effects.job) {
-      for (let [func, value] of Object.entries(effects.job)) {
-        // promotions and demotions can carry alerts with vars
-        if (func === 'promotion' || func === 'demotion') {
-          if (typeof value === 'string') value = fillVars(value);
-        }
-        job[func](value);
-      }
+      applyJobEffects(effects.job);
     }
     if (effects.flags) {
       for (const [flag, value] of Object.entries(effects.flags)) {
@@ -125,10 +120,27 @@ function resolveEffects(effects) {
     if (effects.events && effects.events.length) {
       eventDeck.add(effects.events);
     }
-    if (effects.alert && effects.alert.length) {
-      alert.set(effects.alert);
+    // if a forced alert is set, it will take over priority from above alert
+    // is that the wrong order?
+    // if (effects.alert && effects.alert.length) {
+    //   alertText = fillVars(effects.alert);
+    // }
+    if (alertText !== '') {
+      alert.set(fillVars(alertText));
     }
     if (effects.eventComplete === true) return 1;
+  }
+
+  function applyJobEffects(jobEffects) {
+    for (let [func, value] of Object.entries(jobEffects)) {
+      // pro/dems can carry alerts with vars applicable post-effect
+      job[func](value);
+      if (func === 'promotion' || func === 'demotion') {
+        if (typeof value === 'string') {
+          alertText = value;
+        }
+      }
+    }
   }
 }
 

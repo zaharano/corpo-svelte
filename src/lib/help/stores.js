@@ -93,7 +93,6 @@ function createJob(INIT) {
           title: titles[j.level],
         };
       });
-      alert.set(message);
     }
   };
 
@@ -108,7 +107,6 @@ function createJob(INIT) {
           title: titles[j.level],
         };
       });
-      alert.set(message);
     }
   };
 

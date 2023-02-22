@@ -1,12 +1,27 @@
 <script>
   import Button from "./Button.svelte";
-  import { popupOpen } from "./help/stores";
+  import { alert, listening } from "./help/stores";
+
+  let visible = false;
+
+  $: onAlertChange($alert)
+
+  function onAlertChange(alert) {
+    if (alert === '') return
+    listening.set(false);
+    visible = true;
+  }
+
+  function clickHandler() {
+    visible = false
+    listening.set(true)
+  }
 </script>
 
 <div class="popup-container">
-  <div class="popup" class:closed='{$popupOpen === false}'>
-    this is some conceptual popup text. testing to see where this goes and I think it's a propblem
-    <Button clickHandler={popupOpen.toggle} text={'OK'} />
+  <div class="popup" class:closed='{visible === false}'>
+    {$alert}
+    <Button {clickHandler} text={'OK'} />
   </div>
 </div>
 
