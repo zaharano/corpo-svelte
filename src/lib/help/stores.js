@@ -30,27 +30,35 @@ export const eventDeck = createEventDeck([
   { title: 'aThirdEvent', lvlreq: 0 },
 ]);
 
-// array (strings): list of forced events (handled as queue)
+// array (strings): list of forced event keys (handled as queue)
 export const forcedEvents = writable([]);
 
-// object: current event object
-export const currentEvent = writable({});
+export const prohibitedEvents = writable([]);
+
+// USED BY GAME.JS TO PULL CONTENT
 // string: current event title
 export const currentEventTitle = writable('');
 // string: current screen title
 export const currentScreen = writable('');
-// string: current text
-export const text = writable('');
-// array (objects): current list of options
-export const options = writable([]);
-export const alert = writable('');
 
+// USED BY COMPONENTS TO DISPLAY GAME
+// string: current text
+export const displayText = writable('');
+// array (objects): current list of options (as in answers to screen)
+export const displayOptions = writable([]);
+// string: current alert text
+export const displayAlert = writable('');
+
+// USED BY COMPONENTS TO CONTROL DISPLAY AND INPUT
 // bool: whether currently listening for input
 export const listening = writable(false);
 // bool: whether text has finished loading
 export const textLoaded = writable(false);
-export const popupOpen = createToggle(false);
+// bool: whether the game is currently running
 export const inGame = createToggle(false);
+
+// this is deprecated
+export const popupOpen = createToggle(false);
 
 // generates generic toggle with limited control
 function createToggle(initialValue) {

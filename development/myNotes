@@ -231,23 +231,29 @@ if reach the end of deck with no viable events, you lose
 
 
 TODOS:
-set up eventAdvance
-  set up event selector
-    filter for qualifying events
-      select one
-      if none, end game
+refactor event deck
+  each event within events will have a key details
+  details has lvlreq, flagreq, random, repeatable
+  events.js will include qualifying event serve function
+  On need we qualify an event deck and select from it
+  list of completed events to filter
+refactor flags object
+  describe all possible from events.js
+refactor event system
+  in addition to moving qualifying within events module
+  dont serve (or store) entire events
+  serve screens based on keys (currentEvent, currentScreen)
 implement a gameover
 implement focus effect on performance
+  part of the advance
 implement performance leading to promotion/demotion
-implement option qualification -
+implement optional option qualification -
   in terms of option data, and in terms of render
+  render disabled options?
 test the event advancer
-turn popup into an alert thing
-  on message change - popup
-  while open disable other input ? freeze text load?
-  when close reenable input
-  alerts when promoted/demoted or focus affects performance rating
-
+animate popup
+handle input freeze
+  disable listeners and dim main content
 Add a disabled state to option that disables hover and all listeners
 
 make new SVG have a larger viewBox - this will make the max size larger while not impacting lower end scaling

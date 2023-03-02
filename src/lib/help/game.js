@@ -2,20 +2,19 @@ import {
   job,
   flags,
   eventDeck,
-  currentEvent,
   currentEventTitle,
   currentScreen,
-  text,
-  options,
+  displayText,
+  displayOptions,
+  displayAlert,
   textLoaded,
   listening,
   inGame,
-  alert,
 } from './stores.js';
 
-import { get } from 'svelte/store';
+import { screenServer } from './events';
 
-import { eventServer } from './events';
+import { get } from 'svelte/store';
 
 // reset various state variables
 function initialize() {
@@ -38,11 +37,9 @@ function checkMetrics() {
 
 // initializes a new event, given its name
 function eventInit(eventName) {
-  const newEvent = eventServer(eventName);
   currentEventTitle.set(eventName);
-  currentEvent.set(newEvent);
   currentScreen.set('start');
-  cycleDisplay(newEvent.start.text, newEvent.start.opts);
+  displayScreen(screenServer(eventName, 'start'));
 }
 
 function eventAdvance(effects, next) {
@@ -57,15 +54,20 @@ function eventAdvance(effects, next) {
   } else {
     // if there's no next, error
     currentScreen.set(next);
-    const event = get(currentEvent);
-    cycleDisplay(event[next].text, event[next].opts);
+    const event = get(currentEventTitle);
+    displayScreen(screenServer(event, next));
   }
 }
 
-function cycleDisplay(newText, newOptions) {
-  text.set(fillVars(newText));
+// this all needs a refactor -
+// I want to make eventadvance work like screenserver and storecycle are called once at bottom
+// meaning scoped variables there that can be filled within the if/then
+// this conflicts with using eventInit in the game start...
+function displayScreen(screen) {
+  const { text, options } = screen;
+  displayText.set(fillVars(text));
   // switch options to fill text vars if they ever use vars
-  options.set(newOptions);
+  displayOptions.set(options);
 }
 
 function fillVars(text) {
@@ -131,6 +133,7 @@ function resolveEffects(effects) {
     if (effects.eventComplete === true) return 1;
   }
 
+  // I didn't actually want this scoped thing, revisit this!
   function applyJobEffects(jobEffects) {
     for (let [func, value] of Object.entries(jobEffects)) {
       // pro/dems can carry alerts with vars applicable post-effect
@@ -148,10 +151,11 @@ function loadPrevious() {
   // placeholder
 }
 
+export { eventAdvance, loadPrevious, initialize };
+
 export const game = {
   eventInit,
   initialize,
   loadPrevious,
   eventAdvance,
-  cycleDisplay,
 };
