@@ -1,41 +1,4 @@
-TODO figure out the text-shadow problem with typeout etc. I think its too expensive. Maybe have to drop it as an effect (or make it switchable)
-
-## Framework
-
-cProgress
-cJob
-cOptions
-
-potentialEnemies = [
-"Alfred J. Winterbottom",
-"Kensington P.J. Wintermute",
-]
-
-potentialAugments = [
-Adrenaline Pump
-Blood Oxygen Recycler
-Central Core Gyroscope
-Dermal Calcification
-Toxicity Neutralizing Nanobots
-Optical Spectrum Enhancement
-Emergency Datajack Breaker
-]
-
-import titleGore from titleGore.js
-import enemies from potentialEnemies.js
-import
-let years = 0;
-enemyCount = 0;
-augCount = 0;
-
-currentTitle
-titleLevel
-yearsPassed
-enemyCount
-augCount
-
 ## Tracker
-
 performance metrics
 Clock in time
 Timer
@@ -45,8 +8,23 @@ Focus (test window eventlistner blur and focus)
 Status
 Clicks / minute
 
---- EXTENDED EVENTS ---
+## MAIN EVENTS
+Prologue has a loop issue > game > work > lie > game > work etc.
+Prologue has a flow conflict 
+> hurt Merle > make the game > back to work > work with Merle
+Only way out is to work with Merle so this is a guaranteed outcome if you hurt Merle first and dont end game after
 
+
+Within 1-3 events of game start, you are forced to have activity monitor installed
+(give the monitor a cute name)
+
+Adds random event:
+IT person offers to rig your monitor.
+  Ok rigs monitor but opens event getting caught
+  Rat on them makes enemy but gets small boost
+As an exec: force off monitor event
+
+## EXTENDED EVENTS
 OH LOOK YOU CAN BE A DICK
 Throw your colleauge under the bus?
 Yes promotion x2 job approval x2
@@ -86,11 +64,14 @@ deal with it lose time
 if level 5
 COMPANY IS SAVING MONEY BY BACKFILLING JUNIOR POSITIONS WITH REPLICANTS
 welcome your replicant underling add performance
-opens up replicant run amok
-opens up replicant love arc
-opens up replicant wants freedom
+  opens up replicant run amok
+  opens up replicant love arc
+  opens up replicant wants freedom
+  opens up voit compf
 refuse to work with replicants
-lose ground - neg performance and time 
+  lose ground - neg performance and time 
+  opens up anti-replicant whacko event
+  opens up voit compf
 
 helloSyndicate
 YOU SUFFER SOME COLLATERAL DAMAGE of some Syndicate warfare 
@@ -109,7 +90,7 @@ dont risk it
 do the right thing
 
 
--- ADDED EVENTS --
+## ADDED EVENTS
 if did gameDev
 YOUR BOSS KNOWS YOUR GAME
 if refined
@@ -133,7 +114,7 @@ if augments
 YOU CAN USE YOUR AUGMENTS TO GET A LEG up
 
 
--- GENERICS --
+## GENERICS
 THERES A GLOBAL PANDEMIC
 
 YOU HAVE SOME REALLY GOOD NOODLES 
@@ -171,6 +152,7 @@ purge the buffer
 
 
 
+
  _______ _______  ______ _______ _______  _____   ______  _____ 
  |  |  | |______ |  ____ |_____| |       |     | |_____/ |_____]
  |  |  | |______ |_____| |     | |_____  |_____| |    \_ |      
@@ -184,66 +166,20 @@ purge the buffer
 ╚═╝     ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝     
                                                                      
 
-input handler 
-disable further input.
-process the input. (option exe)
-  valid input makes stuff happen. 
-  invalid output does nothing, shows error, re-enables input.
-
-end of option animation enables input
-
-effects:
-  job
-    performance +/-
-    time +
-    promotion
-    demotion
-    new department
-  flags
-    true/false
-  events
-    add
-effects: {
-  job: {
-    performanceChange: 0,
-    timePassed: 1,
-    promotion: true,
-    demotion: false,
-    newDept: false,
-  },
-  flags: {},
-  events: [],
-  eventComplete: false,
-  alert: 'Alert message',
-  gameOver: true
-},
-
-after all that:
-check performance for promotion/demotion
-check attention for affect on performance
-
-event selector:
-shuffle event deck
-go through one at a time to see if qualified
-(by level, flag, etc)
-if reach the end of deck with no viable events, you lose
-'you've hit a real wall in your career. you kinda just give up'
 
 
 TODOS:
-refactor event deck
-  each event within events will have a key details
-  details has lvlreq, flagreq, random, repeatable
-  events.js will include qualifying event serve function
-  On need we qualify an event deck and select from it
-  list of completed events to filter
+; repurpose next on option
+; gameEnd or eventEnd are protected terms.
+; refactor event deck
+;   each event within events will have a key details
+;   details has lvlreq, flagreq, random, repeatable
+;   events.js will include qualifying event serve function
+;   On need we qualify an event deck and select from it
+;   list of completed events to filter
 refactor flags object
   describe all possible from events.js
-refactor event system
-  in addition to moving qualifying within events module
-  dont serve (or store) entire events
-  serve screens based on keys (currentEvent, currentScreen)
-implement a gameover
+implement a gameover - cant just load event, need to hit title
 implement focus effect on performance
   part of the advance
 implement performance leading to promotion/demotion
@@ -257,4 +193,27 @@ handle input freeze
 Add a disabled state to option that disables hover and all listeners
 
 make new SVG have a larger viewBox - this will make the max size larger while not impacting lower end scaling
+figure out the text-shadow problem with typeout etc. I think its too expensive. Maybe have to drop it as an effect (or make it switchable)
 
+
+NOTES ON NEXT CHANGES
+events changes
+  implement an event queue
+    [150] array with nothing to start
+    force events into the the start of the array
+    every advance grab the top of queue
+    if empty its random event
+    if named its that event
+  after prologue completion, force an activity monitor event 1-3 events
+  at app start, build event meta and flags roundup
+  random event checks again event meta, not full obj
+find ways to bring order to the engine
+  only set state inside of game.js
+  separate mutators and setters/getters
+  test the mutators input/return (no side effects)
+try/catch/finally
+test coverage
+
+
+BUILD THE SCRIPT GEN
+Use a visual editor system like react flow / svelvet
