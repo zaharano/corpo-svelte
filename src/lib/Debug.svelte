@@ -1,5 +1,5 @@
 <script>
-  import { job, flags, eventDeck, currentEvent, currentScreen, effects, text, options, popupOpen, currentEventTitle } from './help/stores'
+  import { job, effects, currentEventTitle } from './help/stores'
   import { game } from './help/game.js'
 
   let hidden = true;
@@ -26,12 +26,8 @@
   <button on:click={() => job.newEnemy()}>New Enemy</button>
   <br>
   
-  Event Deck: {#each $eventDeck as event}
-   {event.title} - req: {event.lvlreq}
-  {/each}
   Current Event: {$currentEventTitle}
   <br>
-  <button on:click={() => eventDeck.add([{ title: 'new event', lvlreq: 2 }])}>Add new event</button>
   <button on:click={() => {
     game.eventAdvance(null, 'merleApproves')
   }}>Test event advance</button>
@@ -46,12 +42,9 @@
   <button on:click={() => effects.toggle('corruption')}>Toggle corruption</button>
   <button on:click={() => effects.newSpeed(500)}>Switch typespeed</button>
   <br>
-  Text: {$text} <br>
-  Options: {$options}
 
   <!-- <button on:click={() => game.loadScreen($currentEvent, $currentScreen)}>Load text</button> -->
   <!-- <button on:click={() => game.eventAdvance($currentEvent, $currentScreen, 1)}>Select option 1</button> -->
-  <button on:click={() => popupOpen.toggle()}>Open Popup</button>
 
 </div>
 
