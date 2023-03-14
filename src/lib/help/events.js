@@ -1,3 +1,5 @@
+import getRandom from './utils';
+
 // variables to be filled at time of display are
 //    %ENEMY: The first enemy from the enemy stack
 //    %DEPT: The player's department
@@ -6,9 +8,7 @@
 const EVENTS = Object.freeze({
   prologue: {
     details: {
-      levelReq: 0,
-      flagReq: [],
-      explicitOnly: true,
+      forcedOnly: true,
     },
     start: {
       title: 'Welcome to Megacorp!',
@@ -88,10 +88,8 @@ const EVENTS = Object.freeze({
         },
         {
           text: "Well darn... guess it's time to start over.",
-          next: 'restart',
-          effects: {
-            gameOver: true,
-          },
+          next: 'gameEnd',
+          effects: {},
         },
       ],
     },
@@ -101,14 +99,13 @@ const EVENTS = Object.freeze({
       options: [
         {
           text: 'Onward and upward...',
-          next: null,
+          next: 'eventEnd',
           effects: {
             job: {
               newDepartment: 'auto',
               promotion:
                 'Congratulations on your promotion to %TITLE in the %DEPT department. If you are unhappy with your assigned department, please fill out a 92-3-cb and submit it to your designated HR representative: <REPRESENTATIVE NOT FOUND>',
             },
-            eventComplete: true,
           },
         },
       ],
@@ -182,10 +179,8 @@ const EVENTS = Object.freeze({
       options: [
         {
           text: 'Start over',
-          next: 'restart',
-          effects: {
-            gameOver: true,
-          },
+          next: 'gameEnd',
+          effects: {},
         },
       ],
     },
@@ -195,7 +190,7 @@ const EVENTS = Object.freeze({
     details: {
       levelReq: 0,
       flagReq: [],
-      explicitOnly: true,
+      forcedOnly: true,
     },
     start: {
       title: 'Well this is going nowhere...',
@@ -216,7 +211,7 @@ const EVENTS = Object.freeze({
     details: {
       levelReq: 0,
       flagReq: [],
-      explicitOnly: false,
+      forcedOnly: false,
     },
     start: {
       title: 'An Opportunity Presents Itself',
@@ -234,7 +229,7 @@ const EVENTS = Object.freeze({
     details: {
       levelReq: 1,
       flagReq: [],
-      explicitOnly: true,
+      forcedOnly: true,
       repeatable: false,
     },
     start: {
@@ -250,34 +245,49 @@ const EVENTS = Object.freeze({
   },
 });
 
-// this is probably not going to be used
-function eventServer(event) {
-  try {
-    return EVENTS[event];
-  } catch (e) {
-    console.log(e.message);
-    console.log(e.name);
-  }
-}
+const EVENT_KEYS = Object.keys(EVENTS);
+const ONLY_RANDOM_EVENT_KEYS = EVENT_KEYS.filter((event) => {
+  return !EVENTS[event].details.forcedOnly;
+});
+const ALLFLAGS = allFlags(EVENTS);
 
-function eventChecker(event) {
+// debug only
+function isEventValid(event) {
   // check all nexts exist as screens
   // all effects are valid
   // all screens are reachable
   // all screens have at least one opt that will be available in any given circumstance
 }
 
-function screenServer(event, screen) {
+function isEventRepeatable(event) {
+  return EVENTS[event].details.repeatable;
+}
+
+function serveScreen(event, screen) {
   try {
     return EVENTS[event][screen];
   } catch (e) {
-    console.log(e.message);
-    console.log(e.name);
+    console.error(`Event: ${event} Screen: ${screen} does not exist`);
   }
 }
 
-function randomQualifiedEventKey(level, flags, completed) {}
+// returns a random event that has been fully qualifed by given info
+function getRandomQualifiedEventKey(level, flags, completed) {
+  // random events filtered by level requirement then flag reqs
+  const levelAndFlagQualified = ONLY_RANDOM_EVENT_KEYS.filter((event) => {
+    EVENTS[event].details.levelReq <= level;
+  }).filter((event) => {
+    EVENTS[event].details.flagReq.every((flag) => flags[flag]);
+  });
+  // level and flag filtered events filtered by locked
+  // TODO: implement completed array
+  // getRandom item from filtered array of keys
+  return getRandom(levelAndFlagQualified);
+}
 
-function allFlags() {}
+function allFlags(EVENTS) {
+  // a function that returns an array of all possible flags
+  // in each event, in each screen, in each option, effects, if addFlags
+}
 
-export { EVENTS as events, eventServer, screenServer };
+export { getRandomQualifiedEventKey, isEventRepeatable, serveScreen };
