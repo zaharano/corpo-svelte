@@ -1,7 +1,8 @@
 import {
   job,
   flags,
-  eventDeck,
+  lockedEvents,
+  scheduledEvents,
   currentEventTitle,
   currentScreen,
   displayText,
@@ -12,15 +13,20 @@ import {
   inGame,
 } from './stores.js';
 
-import { screenServer } from './events';
+import {
+  serveScreen,
+  isEventRepeatable,
+  getRandomQualifiedEventKey,
+} from './events';
 
 import { get } from 'svelte/store';
 
 // reset various state variables
-function initialize() {
+function initGame() {
   job.init();
   flags.init();
-  eventDeck.init();
+  scheduledEvents.init();
+  lockedEvents.set([]);
   eventInit('prologue');
   inGame.toggle();
 }
@@ -35,28 +41,45 @@ function checkMetrics() {
   //
 }
 
-// initializes a new event, given its name
-function eventInit(eventName) {
-  currentEventTitle.set(eventName);
-  currentScreen.set('start');
-  displayScreen(screenServer(eventName, 'start'));
-}
-
-function eventAdvance(effects, next) {
+// this is the choice handler given to the interface
+// the state handling should probably be moved to the eventHandlers
+// results in one of: eventInit(end), eventInit(new), eventAdvance(next)
+function choiceHandler(effects, next) {
   listening.set(false);
   textLoaded.set(false);
-  let res = resolveEffects(effects);
-  if (res === 0) {
-    // end the game somehow
-  } else if (res === 1) {
-    const nextEvent = eventDeck.select();
-    eventInit(nextEvent);
+  if (next === 'gameEnd') {
+    eventInit('gameOverMan');
   } else {
-    // if there's no next, error
-    currentScreen.set(next);
-    const event = get(currentEventTitle);
-    displayScreen(screenServer(event, next));
+    resolveEffects(effects);
+    if (next === 'eventEnd') {
+      let nextEvent = getRandomQualifiedEventKey();
+      eventInit(nextEvent);
+    } else {
+      eventAdvance(next);
+    }
   }
+}
+
+// initializes an event given its name
+// if the event isn't repeatable, it will be locked
+// and pulls in display
+function eventInit(eventKey) {
+  currentEventTitle.set(eventKey);
+  currentScreen.set('start');
+  // if the selected event is not repeatable, add to locked events
+  if (!isEventRepeatable(eventKey)) {
+    lockedEvents.update((list) => list.concat([eventKey]));
+  }
+  displayScreen(serveScreen(eventKey, 'start'));
+}
+
+// continues the current event, given the next screen key
+function eventAdvance(nextKey) {
+  if (!nextKey) {
+    console.error('No valid "next" for selected option');
+  }
+  currentScreen.set(nextKey);
+  displayScreen(serveScreen(get(currentEventTitle), nextKey));
 }
 
 // this all needs a refactor -
@@ -70,6 +93,9 @@ function displayScreen(screen) {
   displayOptions.set(options);
 }
 
+// remove the hard code of the these vars and allow an object argument
+// that lists out the vars and their replacement strategy
+// export
 function fillVars(text) {
   const currentJob = get(job);
   if (typeof text === 'string') {
@@ -90,6 +116,8 @@ function fillVars(text) {
   }
 }
 
+// if game is over, returns 0
+// if event is over, returns 1
 function resolveEffects(effects) {
   // For reference, all possible keys in effects block
   // effects: {
@@ -102,15 +130,13 @@ function resolveEffects(effects) {
   //     newEnemy: 'auto' or other string
   //   },
   //   flags: {newFlag: true},
-  //   events: [{ title: string, lvlreq: int }],
+  //   events: { force: [string], lock: [string] },
   //   alert: string,
-  //   eventComplete: bool,
-  //   gameOver: bool,
   // }
   // All job keys are methods of job store
   let alertText = '';
   if (effects) {
-    if (effects.gameOver === true) return 0;
+    // all possible job object keys are methods of the job store
     if (effects.job) {
       applyJobEffects(effects.job);
     }
@@ -119,8 +145,8 @@ function resolveEffects(effects) {
         flags.add(flag, value);
       }
     }
-    if (effects.events && effects.events.length) {
-      eventDeck.add(effects.events);
+    if (effects.events) {
+      // TODO: handle forcing or locking events
     }
     // if a forced alert is set, it will take over priority from above alert
     // is that the wrong order?
@@ -128,7 +154,7 @@ function resolveEffects(effects) {
     //   alertText = fillVars(effects.alert);
     // }
     if (alertText !== '') {
-      alert.set(fillVars(alertText));
+      displayAlert.set(fillVars(alertText));
     }
     if (effects.eventComplete === true) return 1;
   }
@@ -151,11 +177,11 @@ function loadPrevious() {
   // placeholder
 }
 
-export { eventAdvance, loadPrevious, initialize };
+export { choiceHandler, loadPrevious, initGame };
 
 export const game = {
   eventInit,
-  initialize,
+  initialize: initGame,
   loadPrevious,
-  eventAdvance,
+  eventAdvance: choiceHandler,
 };

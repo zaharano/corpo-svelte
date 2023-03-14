@@ -5,7 +5,7 @@
   import Footer from "./Footer.svelte"
   import Popup from "../Popup.svelte"
 
-  import { text, options } from '../help/stores'
+  import { displayText, displayOptions } from '../help/stores'
 
   // TODO: figure out what to do with the scrollbar styling
   // TODO: the prop passing text (which is useless) is causing the repaint so we need to figure out how to do without
@@ -14,11 +14,11 @@
 <div>
   <Header />
   <main>
-    {#if $text}
+    {#if $displayText}
       <TypeOut />
     {/if}
-    {#if $options}
-      <Options {options}/>
+    {#if $displayOptions}
+      <Options {displayOptions}/>
     {/if}
   </main>
   <Footer />
