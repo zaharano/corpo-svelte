@@ -177,42 +177,36 @@ TODOS:
 ;   events.js will include qualifying event serve function
 ;   On need we qualify an event deck and select from it
 ;   list of completed events to filter
+implement a gameover - cant just load event, need to hit title
+test the event advancer
+events changes
+  implement eventScheduling in effects
+  after prologue completion, force an activity monitor event 1-3 events
+  at app start, build event meta and flags roundup
+  random event checks again event meta, not full obj
+find ways to bring order to the engine
+  only set state inside of game.js
+try/catch/finally
+test coverage
+
+
 refactor flags object
   describe all possible from events.js
-implement a gameover - cant just load event, need to hit title
 implement focus effect on performance
   part of the advance
 implement performance leading to promotion/demotion
 implement optional option qualification -
   in terms of option data, and in terms of render
   render disabled options?
-test the event advancer
 animate popup
 handle input freeze
   disable listeners and dim main content
 Add a disabled state to option that disables hover and all listeners
 
+
 make new SVG have a larger viewBox - this will make the max size larger while not impacting lower end scaling
 figure out the text-shadow problem with typeout etc. I think its too expensive. Maybe have to drop it as an effect (or make it switchable)
 
-
-NOTES ON NEXT CHANGES
-events changes
-  implement an event queue
-    [150] array with nothing to start
-    force events into the the start of the array
-    every advance grab the top of queue
-    if empty its random event
-    if named its that event
-  after prologue completion, force an activity monitor event 1-3 events
-  at app start, build event meta and flags roundup
-  random event checks again event meta, not full obj
-find ways to bring order to the engine
-  only set state inside of game.js
-  separate mutators and setters/getters
-  test the mutators input/return (no side effects)
-try/catch/finally
-test coverage
 
 
 BUILD THE SCRIPT GEN
