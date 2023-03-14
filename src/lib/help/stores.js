@@ -1,4 +1,4 @@
-import { get, writable } from 'svelte/store';
+import { writable } from 'svelte/store';
 import generateDepartment from './department';
 import generateEnemy from './enemies';
 import titles from './titles';
@@ -13,8 +13,8 @@ export const job = createJob({
   enemies: [],
 });
 
-// object: flags tracks decisions that have occurred in current game
-export const flags = createFlags({ test: true });
+// object: flags track decisions that have occurred in current game
+export const flags = createFlags({});
 
 // object: effects tracks certain visual effects in current game
 export const effects = createEffects({
@@ -24,18 +24,12 @@ export const effects = createEffects({
   ghost: false,
 });
 
-// array (objects): list of currently available events
-export const eventDeck = createEventDeck([
-  { title: 'beADick', lvlreq: 0 },
-  { title: 'aThirdEvent', lvlreq: 0 },
-]);
+// array (objs): list of forced events (handled as queue)
+// as { event:string, turns:num}
+export const scheduledEvents = createEventSchedule([]);
+// array (string): list of locked event keys (will prevent selection)
+export const lockedEvents = writable([]);
 
-// array (strings): list of forced event keys (handled as queue)
-export const forcedEvents = writable([]);
-
-export const prohibitedEvents = writable([]);
-
-// USED BY GAME.JS TO PULL CONTENT
 // string: current event title
 export const currentEventTitle = writable('');
 // string: current screen title
@@ -56,9 +50,6 @@ export const listening = writable(false);
 export const textLoaded = writable(false);
 // bool: whether the game is currently running
 export const inGame = createToggle(false);
-
-// this is deprecated
-export const popupOpen = createToggle(false);
 
 // generates generic toggle with limited control
 function createToggle(initialValue) {
@@ -175,35 +166,6 @@ function createJob(INIT) {
   };
 }
 
-// generates eventDeck array with custom controls
-function createEventDeck(INIT) {
-  const { subscribe, set, update } = writable(INIT);
-
-  const select = () => {
-    let selected;
-    update((deck) => {
-      let qualifiedEvents = deck.filter((ev) => ev.lvlreq <= get(job).level);
-      if (qualifiedEvents.length < 1) {
-        selected = 'hitAWall';
-        return deck;
-      } else {
-        selected =
-          qualifiedEvents[Math.floor(Math.random() * qualifiedEvents.length)]
-            .title;
-        return deck.filter((ev) => ev.title !== selected);
-      }
-    });
-    return selected;
-  };
-
-  return {
-    subscribe,
-    select,
-    add: (newEvents) => update((original) => original.concat(newEvents)),
-    init: () => set(INIT),
-  };
-}
-
 // generates flags object with custom controls
 function createFlags(INIT) {
   const { subscribe, set, update } = writable(INIT);
@@ -224,7 +186,7 @@ function createFlags(INIT) {
   };
 }
 
-// generates flags object with custom controls
+// generates effects object with custom controls
 function createEffects(INIT) {
   const { subscribe, set, update } = writable(INIT);
 
@@ -251,6 +213,60 @@ function createEffects(INIT) {
     subscribe,
     toggle,
     newSpeed,
+    init: () => set(INIT),
+  };
+}
+
+function createEventSchedule(INIT) {
+  const { subscribe, set, update } = writable(INIT);
+
+  // schedule an event to a specfic number of turns
+  // if the requested turn count is taken already, add 1 until fits
+  const add = (event, turns) => {
+    update((schedule) => {
+      let timeThatWorks = letsFindATimeThatWorks(schedule, turns);
+      return schedule.concat([
+        {
+          event,
+          turns: timeThatWorks,
+        },
+      ]);
+    });
+  };
+
+  // Tries turn counts until one isn't taken
+  function letsFindATimeThatWorks(list, turn) {
+    if (list.some((item) => item.turns === turn)) {
+      return letsFindATimeThatWorks(list, turn + 1);
+    } else {
+      return turn;
+    }
+  }
+
+  const advance = () => {
+    let nextEvent;
+    update((schedule) => {
+      let newSchedule = schedule.map((item) => {
+        return {
+          ...item,
+          turns: item.turns - 1,
+        };
+      });
+      return newSchedule.filter((item) => {
+        if (item.turns < 1) {
+          nextEvent = item.event;
+          return false;
+        } else return true;
+      });
+    });
+    return nextEvent;
+  };
+
+  return {
+    subscribe,
+    add,
+    advance,
+    set,
     init: () => set(INIT),
   };
 }
