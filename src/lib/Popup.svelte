@@ -1,10 +1,10 @@
 <script>
   import Button from "./Button.svelte";
-  import { alert, listening } from "./help/stores";
+  import { displayAlert, listening } from "./help/stores";
 
   let visible = false;
 
-  $: onAlertChange($alert)
+  $: onAlertChange($displayAlert)
 
   function onAlertChange(alert) {
     if (alert === '') return
@@ -20,7 +20,7 @@
 
 <div class="popup-container">
   <div class="popup" class:closed='{visible === false}'>
-    {$alert}
+    {$displayAlert}
     <Button {clickHandler} text={'OK'} />
   </div>
 </div>

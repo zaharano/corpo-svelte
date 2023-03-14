@@ -1,8 +1,8 @@
 <script>
   import { onMount } from 'svelte'
-  import { textLoaded, effects, text } from './help/stores'
+  import { textLoaded, effects, displayText } from './help/stores'
 
-	$: $text, newText();
+	$: $displayText, newText();
   
 	let container;
 
@@ -33,7 +33,7 @@
 	onMount(() => {
     newText = () => {
       clear()
-      let content = $text;
+      let content = $displayText;
       let cArr = content.split("")
       let timer = null
 
