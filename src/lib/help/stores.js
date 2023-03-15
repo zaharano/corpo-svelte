@@ -18,7 +18,9 @@ export const flags = createFlags({});
 
 // object: effects tracks certain visual effects in current game
 export const effects = createEffects({
-  typeSpeed: 0.0001,
+  typeSpeed: 0.01,
+  tracker: false,
+  enhancedTracker: false,
   flicker: false,
   corruption: false,
   ghost: false,
