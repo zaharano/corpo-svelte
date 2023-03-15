@@ -22,4 +22,6 @@ const TITLES = [
   'Director',
 ];
 
+const TRACKS = ['Project', 'Product', 'Design', 'Research'];
+
 export default TITLES;
