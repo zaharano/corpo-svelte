@@ -17,6 +17,7 @@ import {
   serveScreen,
   isEventRepeatable,
   getRandomQualifiedEventKey,
+  checkRequirements,
 } from './eventOps';
 
 import { get } from 'svelte/store';
@@ -46,21 +47,13 @@ function checkMetrics() {
   //
 }
 
-function checkRequirements(requires) {
-  const { playerLevel, playerFlags } = get(job);
-  if (typeof requires.level === 'number') {
-    if (requires.level > playerLevel) return false;
-  }
-  if (requires.flags.length) {
-    if (!requires.flags.every((flag) => playerFlags[flag])) return false;
-  }
-  return true;
-}
-
 // this is the choice handler given to the interface
 // the state handling should probably be moved to the eventHandlers
 // results in one of: eventInit(end), eventInit(new), eventAdvance(next)
 function choiceHandler(effects, next) {
+  let playerLevel = get(job).level;
+  let playerFlags = get(flags);
+  let playerCompleted = get(lockedEvents);
   listening.set(false);
   textLoaded.set(false);
   if (next === 'gameEnd') {
@@ -68,7 +61,11 @@ function choiceHandler(effects, next) {
   } else {
     resolveEffects(effects);
     if (next === 'eventEnd') {
-      let nextEvent = getRandomQualifiedEventKey();
+      let nextEvent = getRandomQualifiedEventKey(
+        playerLevel,
+        playerFlags,
+        playerCompleted
+      );
       eventInit(nextEvent);
     } else {
       eventAdvance(next);
@@ -98,18 +95,18 @@ function eventAdvance(nextKey) {
   displayScreen(serveScreen(get(currentEventTitle), nextKey));
 }
 
-// this all needs a refactor -
-// I want to make eventadvance work like screenserver and storecycle are called once at bottom
-// meaning scoped variables there that can be filled within the if/then
-// this conflicts with using eventInit in the game start...
 function displayScreen(screen) {
   const { text, options } = screen;
   displayText.set(fillVars(text));
-  // switch options to fill text vars if they ever use vars
-  displayOptions.set(options);
+  const filteredOptions = options.filter((option) => {
+    if (Object.hasOwn(option, 'requires')) {
+      return checkRequirements(option.requires, get(job).level, get(flags));
+    }
+  });
+  displayOptions.set(filteredOptions);
 }
 
-// remove the hard code of the these vars and allow an object argument
+// TODO remove the hard code of the these vars and allow an object argument
 // that lists out the vars and their replacement strategy
 // export
 function fillVars(text) {
@@ -132,8 +129,8 @@ function fillVars(text) {
   }
 }
 
-// if game is over, returns 0
-// if event is over, returns 1
+// refactor for object handling
+// can be from beginning/end of event or option selection
 function resolveEffects(effects) {
   // For reference, all possible keys in effects block
   // effects: {
@@ -145,8 +142,9 @@ function resolveEffects(effects) {
   //     newDept: 'auto' or other string
   //     newEnemy: 'auto' or other string
   //   },
-  //   flags: {newFlag: true},
+  //   flags: {newFlag: bool},
   //   events: { force: [string], lock: [string] },
+  //   vfx: {effect: bool}
   //   alert: string,
   // }
   // All job keys are methods of job store

@@ -2,10 +2,15 @@ import { expect, test } from 'vitest';
 
 import { getRandomQualifiedEventKey, serveScreen } from './eventOps';
 
-test('QEK, 1', () => {
-  console.log('Printing 5 qualified keys, level 1');
+test('5 Qualified Event Keys, level 1, no flags', () => {
   for (let i = 0; i < 5; i++) {
     console.log(getRandomQualifiedEventKey(1, {}, []));
+  }
+});
+
+test('5 Qualified Event Keys, level 1, "test" flag', () => {
+  for (let i = 0; i < 5; i++) {
+    console.log(getRandomQualifiedEventKey(1, { test: true }, []));
   }
 });
 

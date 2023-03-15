@@ -2,10 +2,7 @@ import getRandom from './utils';
 import EVENTS from './events';
 
 const EVENT_KEYS = Object.keys(EVENTS);
-const ONLY_RANDOM_EVENT_KEYS = EVENT_KEYS.filter((event) => {
-  if (EVENTS[event].details.forcedOnly) return false;
-});
-console.log(ONLY_RANDOM_EVENT_KEYS);
+const ONLY_RANDOM_EVENT_KEYS = EVENT_KEYS.filter((e) => !isEventDirectOnly(e));
 const ALLFLAGS = allFlags(EVENTS);
 
 // debug only
@@ -16,8 +13,18 @@ function isEventValid(event) {
   // all screens have at least one opt that will be available in any given circumstance
 }
 
+// do we want to assume these keys will exist because of editor output
 function isEventRepeatable(event) {
-  return EVENTS[event].details.repeatable;
+  if (Object.hasOwn(EVENTS[event].meta, 'repeatable')) {
+    return EVENTS[event].meta.repeatable;
+  } else return false;
+}
+function isEventDirectOnly(event) {
+  if (Object.hasOwn(EVENTS[event].meta, 'requires')) {
+    if (Object.hasOwn(EVENTS[event].meta.requires, 'direct')) {
+      return EVENTS[event].meta.requires.direct;
+    }
+  } else return false;
 }
 
 function serveScreen(event, screen) {
@@ -28,18 +35,35 @@ function serveScreen(event, screen) {
   }
 }
 
-// returns a random event that has been fully qualifed by given info
-function getRandomQualifiedEventKey(level, flags, completed) {
-  // random events filtered by level requirement then flag reqs
-  const levelAndFlagQualified = ONLY_RANDOM_EVENT_KEYS.filter((event) => {
-    EVENTS[event].details.levelReq <= level;
-  }).filter((event) => {
-    EVENTS[event].details.flagReq.every((flag) => flags[flag]);
+// returns a random event key that has been fully qualifed by given info
+function getRandomQualifiedEventKey(playerLevel, playerFlags, completed) {
+  const qualified = ONLY_RANDOM_EVENT_KEYS.filter((event) => {
+    if (Object.hasOwn(EVENTS[event].meta, 'requires')) {
+      return checkRequirements(
+        EVENTS[event].meta.requires,
+        playerLevel,
+        playerFlags
+      );
+    } else return true;
   });
-  // level and flag filtered events filtered by locked
   // TODO: implement completed array
   // getRandom item from filtered array of keys
-  return getRandom(levelAndFlagQualified);
+  return getRandom(qualified);
+}
+
+function checkRequirements(requires, playerLevel, playerFlags) {
+  if (typeof requires.level === 'number') {
+    if (requires.level > playerLevel) return false;
+  }
+  if (Object.hasOwn(requires, 'flags')) {
+    if (!checkFlags(playerFlags, requires.flags)) return false;
+  }
+  return true;
+}
+
+function checkFlags(playerFlags, checkFlags) {
+  if (checkFlags.every((flag) => Object.hasOwn(playerFlags, flag))) return true;
+  else return false;
 }
 
 function allFlags(EVENTS) {
@@ -47,4 +71,9 @@ function allFlags(EVENTS) {
   // in each event, in each screen, in each option, effects, if addFlags
 }
 
-export { getRandomQualifiedEventKey, isEventRepeatable, serveScreen };
+export {
+  getRandomQualifiedEventKey,
+  checkRequirements,
+  isEventRepeatable,
+  serveScreen,
+};
