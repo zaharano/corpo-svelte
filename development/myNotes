@@ -177,7 +177,7 @@ TODOS:
 ;   events.js will include qualifying event serve function
 ;   On need we qualify an event deck and select from it
 ;   list of completed events to filter
-implement a gameover - cant just load event, need to hit title
+; implement a gameover - cant just load event, need to hit title
 test the event advancer
 events changes
   implement eventScheduling in effects
@@ -189,7 +189,9 @@ find ways to bring order to the engine
 try/catch/finally
 test coverage
 
-
+; generic requires check?
+;   apply to both options and events
+implement tracks within title - product, project, etc
 refactor flags object
   describe all possible from events.js
 implement focus effect on performance
