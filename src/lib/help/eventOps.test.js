@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 
-import { getRandomQualifiedEventKey, serveScreen } from './events';
+import { getRandomQualifiedEventKey, serveScreen } from './eventOps';
 
 test('QEK, 1', () => {
   console.log('Printing 5 qualified keys, level 1');

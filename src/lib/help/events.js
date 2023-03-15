@@ -1,5 +1,3 @@
-import getRandom from './utils';
-
 // variables to be filled at time of display are
 //    %ENEMY: The first enemy from the enemy stack
 //    %DEPT: The player's department
@@ -7,8 +5,12 @@ import getRandom from './utils';
 
 const EVENTS = Object.freeze({
   prologue: {
-    details: {
-      forcedOnly: true,
+    meta: {
+      title: 'Prologue',
+      repeatable: false,
+      requires: {
+        direct: true,
+      },
     },
     start: {
       title: 'Welcome to Megacorp!',
@@ -187,10 +189,10 @@ const EVENTS = Object.freeze({
   },
 
   hitAWall: {
-    details: {
-      levelReq: 0,
-      flagReq: [],
-      forcedOnly: true,
+    requires: {
+      level: 1,
+      flags: [],
+      direct: true,
     },
     start: {
       title: 'Well this is going nowhere...',
@@ -208,10 +210,8 @@ const EVENTS = Object.freeze({
   },
 
   beADick: {
-    details: {
-      levelReq: 0,
-      flagReq: [],
-      forcedOnly: false,
+    requires: {
+      direct: false,
     },
     start: {
       title: 'An Opportunity Presents Itself',
@@ -226,11 +226,10 @@ const EVENTS = Object.freeze({
   },
 
   aThirdEvent: {
-    details: {
-      levelReq: 1,
-      flagReq: [],
-      forcedOnly: true,
-      repeatable: false,
+    requires: {
+      level: 2,
+      flags: [],
+      direct: true,
     },
     start: {
       title: 'Start Screen Title!',
@@ -245,49 +244,4 @@ const EVENTS = Object.freeze({
   },
 });
 
-const EVENT_KEYS = Object.keys(EVENTS);
-const ONLY_RANDOM_EVENT_KEYS = EVENT_KEYS.filter((event) => {
-  return !EVENTS[event].details.forcedOnly;
-});
-const ALLFLAGS = allFlags(EVENTS);
-
-// debug only
-function isEventValid(event) {
-  // check all nexts exist as screens
-  // all effects are valid
-  // all screens are reachable
-  // all screens have at least one opt that will be available in any given circumstance
-}
-
-function isEventRepeatable(event) {
-  return EVENTS[event].details.repeatable;
-}
-
-function serveScreen(event, screen) {
-  try {
-    return EVENTS[event][screen];
-  } catch (e) {
-    console.error(`Event: ${event} Screen: ${screen} does not exist`);
-  }
-}
-
-// returns a random event that has been fully qualifed by given info
-function getRandomQualifiedEventKey(level, flags, completed) {
-  // random events filtered by level requirement then flag reqs
-  const levelAndFlagQualified = ONLY_RANDOM_EVENT_KEYS.filter((event) => {
-    EVENTS[event].details.levelReq <= level;
-  }).filter((event) => {
-    EVENTS[event].details.flagReq.every((flag) => flags[flag]);
-  });
-  // level and flag filtered events filtered by locked
-  // TODO: implement completed array
-  // getRandom item from filtered array of keys
-  return getRandom(levelAndFlagQualified);
-}
-
-function allFlags(EVENTS) {
-  // a function that returns an array of all possible flags
-  // in each event, in each screen, in each option, effects, if addFlags
-}
-
-export { getRandomQualifiedEventKey, isEventRepeatable, serveScreen };
+export default EVENTS;

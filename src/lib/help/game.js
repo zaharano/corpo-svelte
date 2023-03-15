@@ -17,7 +17,7 @@ import {
   serveScreen,
   isEventRepeatable,
   getRandomQualifiedEventKey,
-} from './events';
+} from './eventOps';
 
 import { get } from 'svelte/store';
 
@@ -31,6 +31,11 @@ function initGame() {
   inGame.toggle();
 }
 
+function endGame() {
+  inGame.toggle();
+  // clock out
+}
+
 // TODO: Function to check metrics
 function checkMetrics() {
   // if jobPerformance > x, promotion
@@ -41,6 +46,17 @@ function checkMetrics() {
   //
 }
 
+function checkRequirements(requires) {
+  const { playerLevel, playerFlags } = get(job);
+  if (typeof requires.level === 'number') {
+    if (requires.level > playerLevel) return false;
+  }
+  if (requires.flags.length) {
+    if (!requires.flags.every((flag) => playerFlags[flag])) return false;
+  }
+  return true;
+}
+
 // this is the choice handler given to the interface
 // the state handling should probably be moved to the eventHandlers
 // results in one of: eventInit(end), eventInit(new), eventAdvance(next)
@@ -48,7 +64,7 @@ function choiceHandler(effects, next) {
   listening.set(false);
   textLoaded.set(false);
   if (next === 'gameEnd') {
-    eventInit('gameOverMan');
+    endGame();
   } else {
     resolveEffects(effects);
     if (next === 'eventEnd') {
@@ -178,10 +194,3 @@ function loadPrevious() {
 }
 
 export { choiceHandler, loadPrevious, initGame };
-
-export const game = {
-  eventInit,
-  initialize: initGame,
-  loadPrevious,
-  eventAdvance: choiceHandler,
-};
