@@ -1,6 +1,5 @@
 <script>
-  import { job, effects, currentEventTitle } from './help/stores'
-  import { game } from './help/game.js'
+  import { job, vfx, currentEventTitle } from './help/stores'
 
   let hidden = true;
 
@@ -28,19 +27,15 @@
   
   Current Event: {$currentEventTitle}
   <br>
-  <button on:click={() => {
-    game.eventAdvance(null, 'merleApproves')
-  }}>Test event advance</button>
-  <br>
   Effects: <br>
-  {#each Object.entries($effects) as [effect, value]}
+  {#each Object.entries($vfx) as [effect, value]}
     &nbsp{effect}: {value}  ---  
   {/each}
   <!-- {@debug $effects} -->
-  <button on:click={() => effects.toggle('flicker')}>Toggle flicker</button>
-  <button on:click={() => effects.toggle('ghost')}>Toggle ghost</button>
-  <button on:click={() => effects.toggle('corruption')}>Toggle corruption</button>
-  <button on:click={() => effects.newSpeed(500)}>Switch typespeed</button>
+  <button on:click={() => vfx.toggle('flicker')}>Toggle flicker</button>
+  <button on:click={() => vfx.toggle('ghost')}>Toggle ghost</button>
+  <button on:click={() => vfx.toggle('corruption')}>Toggle corruption</button>
+  <button on:click={() => vfx.newSpeed(500)}>Switch typespeed</button>
   <br>
 
   <!-- <button on:click={() => game.loadScreen($currentEvent, $currentScreen)}>Load text</button> -->

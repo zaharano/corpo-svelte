@@ -17,7 +17,7 @@ export const job = createJob({
 export const flags = createFlags({});
 
 // object: effects tracks certain visual effects in current game
-export const effects = createEffects({
+export const vfx = createVFX({
   typeSpeed: 0.01,
   tracker: false,
   enhancedTracker: false,
@@ -189,7 +189,7 @@ function createFlags(INIT) {
 }
 
 // generates effects object with custom controls
-function createEffects(INIT) {
+function createVFX(INIT) {
   const { subscribe, set, update } = writable(INIT);
 
   const toggle = (effect) => {

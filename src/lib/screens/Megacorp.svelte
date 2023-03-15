@@ -1,6 +1,6 @@
 <script>
   import Button from "../Button.svelte";
-  import { game } from "../help/game.js"
+  import { initGame } from "../help/game.js"
 
 </script>
 
@@ -15,8 +15,8 @@
                                                              
   </pre>
   <nav class="menu">
-    <Button clickHandler={game.initialize} text={'PUNCH IN'}/>
-    <Button clickHandler={game.loadPrevious} text={'LOAD'}/>
+    <Button clickHandler={initGame} text={'PUNCH IN'}/>
+    <Button clickHandler={initGame} text={'LOAD'}/>
   </nav>
 </div>
 

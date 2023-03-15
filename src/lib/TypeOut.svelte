@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte'
-  import { textLoaded, effects, displayText } from './help/stores'
+  import { textLoaded, vfx, displayText } from './help/stores'
 
 	$: $displayText, newText();
   
@@ -56,7 +56,7 @@
           }, 500);
           clearInterval(timer);
         }
-      }, $effects.typeSpeed);
+      }, $vfx.typeSpeed);
     }
     newText();
 	});
