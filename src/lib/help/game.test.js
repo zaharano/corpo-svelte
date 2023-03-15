@@ -13,17 +13,39 @@ import {
 
 import { initGame } from './game';
 
-test('Game initialize resets state', () => {
+function setState(name) {
+  switch (name) {
+    case 'early':
+      job.set({
+        level: 1,
+        years: 4,
+        department: 'Applied Logistics',
+        title: 'Junior Manager',
+        performance: 70,
+        enemies: [],
+      });
+      flags.init();
+      lockedEvents.set([]);
+    case 'mid':
+      job.set({
+        level: 7,
+        years: 23,
+        department: 'Applied Applications',
+        title: 'Senior Manager, Project Management',
+        performance: 70,
+        enemies: [],
+      });
+      flags.set({ test: true, test2: true });
+      lockedEvents.set([]);
+  }
+}
+
+test('Game initialize resets state and starts prologue', () => {
   initGame();
-  let initJob = get(job);
-  let initflags = get(flags);
-  let initLockedEvents = get(lockedEvents);
-  let initCurrentEventTitle = get(currentEventTitle);
-  let initCurrentScreen = get(currentScreen);
-  let initScheduledEvents = get(scheduledEvents);
-  expect(initCurrentEventTitle).toEqual('prologue');
-  expect(initCurrentScreen).toEqual('start');
-  expect(initScheduledEvents).toEqual([]);
+
+  expect(get(currentEventTitle)).toEqual('prologue');
+  expect(get(currentScreen)).toEqual('start');
+  expect(get(scheduledEvents)).toEqual([]);
 });
 
 // test a few effects blocks
