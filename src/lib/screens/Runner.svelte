@@ -32,7 +32,7 @@
   .runner-type {
     font-family: 'Rubik Mono One', Courier, monospace;
     font-weight: 400;
-    font-size: 2.5vmin;
+    font-size: 2.4vmin;
     text-align: center;
     color: #8fe6e2;
     text-shadow: 0px 0px 9.12281px rgba(73, 193, 188, 0.8),
@@ -43,7 +43,7 @@
 
   .runner-type-title {
     font-family: Rubik;
-    font-size: 7vmin;
+    font-size: 6.8vmin;
     font-weight: 600;
   }
 
