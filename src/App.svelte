@@ -16,7 +16,7 @@
   onMount(() => {
     loadingInterval = setTimeout(() => {
       loaded = true;
-    }, 200)
+    }, 4000)
   })
 </script>
 
@@ -47,6 +47,8 @@
   
   .app-container {
     background-color: #282c34;
+    /* background: rgb(4,13,12);
+    background: linear-gradient(180deg, rgba(4,13,12,1) 0%, rgba(2,51,40,1) 78%, rgba(0,36,29,1) 80%, rgba(3,92,80,1) 100%);     */
     min-height: 97.8vh;
     display: flex;
     flex-direction: column;
