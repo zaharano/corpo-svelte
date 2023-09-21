@@ -79,7 +79,11 @@ const EVENTS = Object.freeze({
       text: "While 30 years at a company doesn't necessarily buy you corporate advancement, turns out it does buy you a friend or two. Once people figure out what you're up to, you're quickly demoted to a mail room associate position from which you're very unlikely to ever emerge.",
       options: [
         {
-          disabled: 'gameDeveloper',
+          requires: {
+            flags: {
+              gameDeveloper: true,
+            },
+          },
           text: 'Plenty of time to focus now on your true passion, game development.',
           next: 'gameDev',
           effects: {
@@ -618,4 +622,4 @@ const TEST_EVENTS = Object.freeze({
   },
 });
 
-export default TEST_EVENTS;
+export default EVENTS;
