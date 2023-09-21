@@ -16,7 +16,7 @@
   </pre>
   <nav class="menu">
     <Button clickHandler={initGame} text={'PUNCH IN'}/>
-    <Button clickHandler={initGame} text={'LOAD'}/>
+    <!-- <Button clickHandler={initGame} text={'LOAD'}/> -->
   </nav>
 </div>
 
