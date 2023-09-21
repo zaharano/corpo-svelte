@@ -37,6 +37,10 @@
         {/if}
       </ScreenEffects>
     </div>
+    <span class="info">
+      Just the prologue for now while I write the rest!
+      <a href="https://github.com/zaharano/corpo-svelte" target="_blank" rel="noopener noreferrer">Check out the repo</a>
+    </span>
   </div>
 </main>
 
@@ -56,6 +60,21 @@
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
+  }
+
+  .info {
+    font-size: .5em;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 1em;
+  }
+
+  .info a {
+    color: white;
+  }
+
+  .info a:hover {
+    color: #8fe6e2;
   }
 
   .screen-container {
