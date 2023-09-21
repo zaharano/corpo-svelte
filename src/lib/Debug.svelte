@@ -1,5 +1,5 @@
 <script>
-  import { job, vfx, currentEventTitle } from './help/stores'
+  import { job, vfx, currentEventTitle, flags } from './help/stores'
 
   let hidden = true;
 
@@ -37,6 +37,19 @@
   <button on:click={() => vfx.toggle('corruption')}>Toggle corruption</button>
   <button on:click={() => vfx.newSpeed(500)}>Switch typespeed</button>
   <br>
+
+  <div>
+    Flags: <br>
+    {#each Object.entries($flags) as [flag, value]}
+      &nbsp{flag}: {value}  ---  
+    {/each}
+  </div>
+  <div>
+    Enemies: <br>
+    {#each Object.entries($job.enemies) as [enemy, value]}
+      &nbsp{enemy}: {value}  ---  
+    {/each}
+  </div>
 
   <!-- <button on:click={() => game.loadScreen($currentEvent, $currentScreen)}>Load text</button> -->
   <!-- <button on:click={() => game.eventAdvance($currentEvent, $currentScreen, 1)}>Select option 1</button> -->
