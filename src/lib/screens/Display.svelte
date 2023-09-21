@@ -43,12 +43,16 @@
     scrollbar-color: var(--text) rgba(0, 0, 0, 0);
   }
 
+  main::-webkit-scrollbar {
+    width: 10px;
+  }
+
   main::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0);
   }
 
   main::-webkit-scrollbar-thumb {
     background-color: var(--text);
-    border-radius: 0px;
+    -webkit-border-radius: 1px;
   }
 </style>
