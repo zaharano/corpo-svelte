@@ -18,12 +18,14 @@
   }
 </script>
 
-<div class="popup-container">
-  <div class="popup" class:closed='{visible === false}'>
-    {$displayAlert}
-    <Button {clickHandler} text={'OK'} />
+{#if $displayAlert}
+  <div class="popup-container">
+    <div class="popup" class:closed='{visible === false}'>
+      {$displayAlert}
+      <Button {clickHandler} text={'OK'} />
+    </div>
   </div>
-</div>
+{/if}
 
 <style>
   .popup-container {
