@@ -1,5 +1,7 @@
 <script>
   import { onMount } from 'svelte';
+  import { job} from './help/stores'
+
 
   import Timer from './help/timer.js'
 
@@ -74,7 +76,13 @@
     <div>{delinquent ? 'Delinquent' : absent ? 'Absent' : idle ? 'Idle' : 'Working'}</div>
   </div>
   <div class="ratio">
-    <strong>Ratio: </strong>{(idleTimeDisplay / workTimeDisplay).toFixed(2)}
+    <strong>Job Performance: </strong>{
+      $job.performance > 80 ? 'Excellent' :
+      $job.performance > 60 ? 'Good' :
+      $job.performance > 40 ? 'Average' :
+      $job.performance > 20 ? 'Poor' :
+      'Terrible'
+    }
   </div>  
 </div>
 
