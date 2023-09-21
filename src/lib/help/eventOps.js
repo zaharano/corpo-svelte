@@ -61,9 +61,12 @@ function checkRequirements(requires, playerLevel, playerFlags) {
   return true;
 }
 
-function checkFlags(playerFlags, checkFlags) {
-  if (checkFlags.every((flag) => Object.hasOwn(playerFlags, flag))) return true;
-  else return false;
+function checkFlags(playerFlags, flagsToCheck) {
+  return Object.entries(flagsToCheck).every(([flag, value]) => {
+    if (Object.hasOwn(playerFlags, flag)) {
+      return playerFlags[flag] === value;
+    } else return false;
+  });
 }
 
 function allFlags(EVENTS) {
