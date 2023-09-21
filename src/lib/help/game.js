@@ -101,7 +101,7 @@ function displayScreen(screen) {
   const filteredOptions = options.filter((option) => {
     if (Object.hasOwn(option, 'requires')) {
       return checkRequirements(option.requires, get(job).level, get(flags));
-    }
+    } else return true;
   });
   displayOptions.set(filteredOptions);
 }

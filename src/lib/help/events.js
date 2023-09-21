@@ -81,7 +81,7 @@ const EVENTS = Object.freeze({
         {
           requires: {
             flags: {
-              gameDeveloper: true,
+              gameDeveloper: false,
             },
           },
           text: 'Plenty of time to focus now on your true passion, game development.',
@@ -196,7 +196,6 @@ const EVENTS = Object.freeze({
     meta: {
       requires: {
         level: 1,
-        flags: [],
         direct: true,
       },
     },
@@ -238,7 +237,9 @@ const EVENTS = Object.freeze({
     meta: {
       requires: {
         level: 0,
-        flags: ['test'],
+        flags: {
+          test: true,
+        },
         direct: false,
       },
     },
@@ -258,7 +259,10 @@ const EVENTS = Object.freeze({
     meta: {
       requires: {
         level: 0,
-        flags: ['test', 'cheese'],
+        flags: {
+          test: true,
+          cheese: true,
+        },
         direct: false,
       },
     },
@@ -278,7 +282,9 @@ const EVENTS = Object.freeze({
     meta: {
       requires: {
         level: 2,
-        flags: ['test'],
+        flags: {
+          test: true,
+        },
         direct: false,
       },
     },
@@ -371,7 +377,11 @@ const TEST_EVENTS = Object.freeze({
       text: "While 30 years at a company doesn't necessarily buy you corporate advancement, turns out it does buy you a friend or two. Once people figure out what you're up to, you're quickly demoted to a mail room associate position from which you're very unlikely to ever emerge.",
       options: [
         {
-          disabled: 'gameDeveloper',
+          requires: {
+            flags: {
+              gameDeveloper: false,
+            },
+          },
           text: 'Plenty of time to focus now on your true passion, game development.',
           next: 'gameDev',
           effects: {
@@ -565,7 +575,9 @@ const TEST_EVENTS = Object.freeze({
     meta: {
       requires: {
         level: 0,
-        flags: ['test'],
+        flags: {
+          test: true,
+        },
         direct: false,
       },
     },
@@ -585,7 +597,10 @@ const TEST_EVENTS = Object.freeze({
     meta: {
       requires: {
         level: 0,
-        flags: ['test', 'cheese'],
+        flags: {
+          test: true,
+          cheese: true,
+        },
         direct: false,
       },
     },
