@@ -29,6 +29,7 @@
     align-items: center;
     height: 108%;
     transform: scale(1.2);
+    font-family:'Courier New', Courier, monospace;
   }
 
   pre {
