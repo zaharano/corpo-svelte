@@ -43,7 +43,6 @@
     }
     pre {
       font-size: calc(1px + 1vmin);
-      overflow: hidden;
       text-align: left;
     }
   }
