@@ -47,9 +47,9 @@
     display: none;
   }
   .popup {
-    background-color: black;
+    background-color: #282c34;
     border: 3px solid var(--text);
-    box-shadow: var(--text-glow), var(--text-glow) inset;
+    box-shadow: var(--text-glow);
     margin: auto;
     padding: 20px 30px;
     display: flex;
