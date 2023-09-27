@@ -25,6 +25,7 @@
     flex-direction: row;
     font-family: var(--primary-font);
     font-size: inherit;
+    will-change: opacity, color;
   }
 
   .option:hover {

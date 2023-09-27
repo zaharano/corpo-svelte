@@ -22,4 +22,7 @@
   .options {
     margin: .5em 0;
   }
+  div {
+    will-change: opacity, color;
+  }
 </style>
