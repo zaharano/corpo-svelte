@@ -79,6 +79,7 @@
 
   .typeOut-container :global(.burning) {
     color: hsl(177, 64%, 95%);
+    /* tragically, chrome and safari choke on text shadow animation */
     /* text-shadow: 0px 0px 9.12281px hsl(0, 0%, 100%), 0px 0px 54.7368px hsl(0, 0%, 100%); */
     /* filter: drop-shadow(0 0 55px hsl(178, 49%, 52%)); */
   }

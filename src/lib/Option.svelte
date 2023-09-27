@@ -18,7 +18,7 @@
     border: none;
     color: inherit;
     display: block;
-    text-shadow: inherit;
+    text-shadow: none;
     width: 100%;
     text-align: inherit;
     display: flex;
