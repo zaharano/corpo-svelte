@@ -61,11 +61,17 @@ function checkRequirements(requires, playerLevel, playerFlags) {
   return true;
 }
 
+// right now this returns true if the player doesn't have a flag that's required false
+// Might want to change this up - thinking maybe I populate player flags with ALL possible flags, with default values
 function checkFlags(playerFlags, flagsToCheck) {
   return Object.entries(flagsToCheck).every(([flag, value]) => {
     if (Object.hasOwn(playerFlags, flag)) {
       return playerFlags[flag] === value;
-    } else return false;
+    }
+    if (value === false) {
+      return true;
+    }
+    return false;
   });
 }
 
