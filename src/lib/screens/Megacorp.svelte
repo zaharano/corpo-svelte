@@ -31,19 +31,20 @@
     transform: scale(1.2);
   }
 
+  pre {
+    font-size: calc(3px + 1vmin);
+  } 
+
   @media (max-width: 480px) {
     .container {
       transform: scale(1);
       margin-top: 10vh
     }
     pre {
-      font-size: 3.5vmin;
+      font-size: 1.4vw;
     }
   }
 
-  pre {
-    font-size: calc(3px + 1vmin);
-  } 
 
   nav {
     display: flex;
