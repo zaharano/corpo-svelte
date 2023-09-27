@@ -18,7 +18,7 @@ export const flags = createFlags({});
 
 // object: effects tracks certain visual effects in current game
 export const vfx = createVFX({
-  typeSpeed: 0.01,
+  typeSpeed: 10,
   tracker: false,
   enhancedTracker: false,
   flicker: false,
