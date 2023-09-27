@@ -27,7 +27,7 @@
       position: relative;
       margin: 1rem auto;
       width: 94%;
-      height: 92%;
+      height: 90%;
       top: auto;
       left: auto;
     }
