@@ -36,6 +36,9 @@
       transform: scale(1);
       margin-top: 10vh
     }
+    pre {
+      font-size: 3.5vmin;
+    }
   }
 
   pre {
