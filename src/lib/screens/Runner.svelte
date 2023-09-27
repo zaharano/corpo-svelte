@@ -48,9 +48,9 @@
   }
 
   .runner-type-title {
-    font-family: Rubik;
+    font-family: 'Rubik', Arial, Helvetica, sans-serif;
     font-size: 6.8vmin;
-    font-weight: 600;
+    font-weight: 900;
   }
 
   .spinner {

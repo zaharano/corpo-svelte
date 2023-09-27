@@ -1,3 +1,31 @@
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 100 1000;
+  font-display: swap;
+  src: url('fonts/SourceCodePro-VariableFont_wght.ttf') format('truetype')
+      tech('variations'),
+    local('Source Code Pro Regular'), local('SourceCodePro-Regular');
+}
+
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 100 1000;
+  font-display: swap;
+  src: url('fonts/Rubik-VariableFont_wght.ttf') format('truetype')
+    tech('variations');
+}
+
+@font-face {
+  font-family: 'Rubik Mono One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Rubik Mono One'), local('RubikMonoOne-Regular'),
+    url('fonts/RubikMonoOne-Regular.ttf') format('truetype');
+}
+
 :root {
   --text: hsl(177, 62%, 63%);
   --highlight: hsla(177, 75%, 68%, 0.747);
