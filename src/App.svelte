@@ -86,7 +86,7 @@
     .app-container {
       min-height: 98vh;
       justify-content: inherit;
-      font-size: calc(16px + 1vmin);
+      font-size: calc(16px + 2vmin);
     }
     .screen-container {
       width: 100%;
