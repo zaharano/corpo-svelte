@@ -41,8 +41,8 @@
       margin-top: 10vh
     }
     pre {
-      font-size: calc(3px + 1vmin);
-      overflow:hidden;
+      font-size: calc(1px + 1vmin);
+      overflow: hidden;
     }
   }
 
