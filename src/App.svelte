@@ -53,7 +53,7 @@
     background-color: #282c34;
     /* background: rgb(4,13,12);
     background: linear-gradient(180deg, rgba(4,13,12,1) 0%, rgba(2,51,40,1) 78%, rgba(0,36,29,1) 80%, rgba(3,92,80,1) 100%);     */
-    min-height: 97.8vh;
+    min-height: 98vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -66,7 +66,7 @@
     font-size: .5em;
     position: absolute;
     bottom: 0;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
   }
 
   .info a {
@@ -80,6 +80,19 @@
   .screen-container {
     width: 100vmin;
     position: absolute;
+  }
+
+  @media (max-width: 480px) {
+    .app-container {
+      min-height: 98vh;
+      justify-content: inherit;
+      font-size: calc(16px + 1vmin);
+    }
+    .screen-container {
+      width: 100%;
+      height: 100%;
+      position: static;
+    }
   }
 
 </style>

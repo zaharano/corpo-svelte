@@ -21,6 +21,17 @@
     width: 65%;
     height: 65%;
   }
+
+  @media (max-width: 480px) {
+    .screen-content-container {
+      position: relative;
+      margin: 1rem auto;
+      width: 94%;
+      height: 85%;
+      top: auto;
+      left: auto;
+    }
+  }
   
   /* this wasn't broken before, maybe because it was getting informed by the svg, need to figure out! */
   

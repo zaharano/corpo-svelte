@@ -29,6 +29,12 @@
     height: 108%;
     transform: scale(1.2);
   }
+
+  @media (max-width: 480px) {
+    .position {
+      margin-top: 10vh
+    }
+  }
   .runner-type {
     font-family: 'Rubik Mono One', Courier, monospace;
     font-weight: 400;

@@ -120,13 +120,13 @@
   .times {
     display: flex;
     flex-direction: column;
-    width: 25%;
+    width: 35%;
   }
   .status {
     text-align: center;
   }
   .ratio {
     text-align: right;
-    width: 25%;
+    width: 35%;
   }
 </style>

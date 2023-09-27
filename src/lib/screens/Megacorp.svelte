@@ -31,6 +31,13 @@
     transform: scale(1.2);
   }
 
+  @media (max-width: 480px) {
+    .container {
+      transform: scale(1);
+      margin-top: 10vh
+    }
+  }
+
   pre {
     font-size: calc(3px + 1vmin);
   } 

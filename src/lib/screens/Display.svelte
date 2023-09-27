@@ -43,6 +43,15 @@
     scrollbar-color: var(--text) rgba(0, 0, 0, 0);
   }
 
+  @media (max-width: 480px) {
+    div {
+      font-size: 3.5vmin;
+    }
+    main {
+      min-height: 80vh;
+    }
+  }
+
   main::-webkit-scrollbar {
     width: 10px;
   }
