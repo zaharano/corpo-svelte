@@ -10,7 +10,7 @@
 <div class="options">
   {#if $textLoaded }
     {#each $displayOptions as option, idx}
-      <div in:fly={{ y: 50, duration: 1000, delay: idx * 700 + 500 }}>
+      <div in:fly={{ delay: idx * 700 + 500 }}>
         <Option {idx} {...option}/> 
       </div>
     {/each}
