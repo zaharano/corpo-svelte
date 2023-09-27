@@ -45,7 +45,7 @@
 
   @media (max-width: 480px) {
     div {
-      font-size: 3.5vmin;
+      font-size: 4.5vmin;
     }
     main {
       min-height: 80vh;
