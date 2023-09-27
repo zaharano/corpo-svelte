@@ -68,10 +68,12 @@
 <style>
   .typeOut-container {
     transition: color 1s, text-shadow 1s;
+    will-change: auto;
     /* filter: drop-shadow(0 0 55px white) */
   }
 
   .typeOut-container :global(span) {
+    will-change: auto;
     transition: color 1.2s, text-shadow 1.2s;
   }
 
