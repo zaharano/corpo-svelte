@@ -37,10 +37,12 @@
         {/if}
       </ScreenEffects>
     </div>
-    <span class="info">
-      Just the prologue for now while I write the rest!
-      <a href="https://github.com/zaharano/corpo-svelte" target="_blank" rel="noopener noreferrer">Check out the repo</a>
-    </span>
+    {#if !$inGame}
+      <span class="info">
+        Just the prologue for now while I write the rest!<br>
+        <a href="https://github.com/zaharano/corpo-svelte" target="_blank" rel="noopener noreferrer">Check out the repo</a>
+      </span>
+    {/if}
   </div>
 </main>
 
