@@ -27,12 +27,13 @@
     justify-content: center;
     align-items: center;
     height: 108%;
-    transform: scale(1.2);
+    transform: scale(1.0);
   }
 
   @media (max-width: 480px) {
     .position {
-      margin-top: 10vh
+      margin-top: 10vh;
+      height: 100%;
     }
   }
   .runner-type {
