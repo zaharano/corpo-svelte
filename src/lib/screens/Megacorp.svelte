@@ -42,7 +42,7 @@
       margin-top: 10vh
     }
     pre {
-      font-size: calc(1vmin);
+      font-size: calc(2vmin);
       text-align: left;
     }
   }
