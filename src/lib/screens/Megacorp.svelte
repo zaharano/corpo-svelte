@@ -6,12 +6,12 @@
 
 <div class='container'>
   <pre>
-███╗&nbsp;&nbsp;&nbsp;███╗███████╗&nbsp;██████╗&nbsp;&nbsp;█████╗&nbsp;&nbsp;██████╗&nbsp;██████╗&nbsp;██████╗&nbsp;██████╗&nbsp;
-████╗&nbsp;████║██╔════╝██╔════╝&nbsp;██╔══██╗██╔════╝██╔═══██╗██╔══██╗██╔══██╗
-██╔████╔██║█████╗&nbsp;&nbsp;██║&nbsp;&nbsp;███╗███████║██║&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;██║&nbsp;&nbsp;&nbsp;██║██████╔╝██████╔╝
-██║╚██╔╝██║██╔══╝&nbsp;&nbsp;██║&nbsp;&nbsp;&nbsp;██║██╔══██║██║&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;██║&nbsp;&nbsp;&nbsp;██║██╔══██╗██╔═══╝&nbsp;
-██║&nbsp;╚═╝&nbsp;██║███████╗╚██████╔╝██║&nbsp;&nbsp;██║╚██████╗╚██████╔╝██║&nbsp;&nbsp;██║██║&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-╚═╝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╚═╝╚══════╝&nbsp;╚═════╝&nbsp;╚═╝&nbsp;&nbsp;╚═╝&nbsp;╚═════╝&nbsp;╚═════╝&nbsp;╚═╝&nbsp;&nbsp;╚═╝╚═╝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+███╗   ███╗███████╗ ██████╗  █████╗  ██████╗ ██████╗ ██████╗ ██████╗ 
+████╗ ████║██╔════╝██╔════╝ ██╔══██╗██╔════╝██╔═══██╗██╔══██╗██╔══██╗
+██╔████╔██║█████╗  ██║  ███╗███████║██║     ██║   ██║██████╔╝██████╔╝
+██║╚██╔╝██║██╔══╝  ██║   ██║██╔══██║██║     ██║   ██║██╔══██╗██╔═══╝ 
+██║ ╚═╝ ██║███████╗╚██████╔╝██║  ██║╚██████╗╚██████╔╝██║  ██║██║     
+╚═╝     ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝     
                                                              
   </pre>
   <nav class="menu">
@@ -25,15 +25,15 @@
   .container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
     height: 108%;
     transform: scale(1.2);
-    font-family: 'Source Code Pro', monospace;
+    font-family: monospace;
   }
 
   pre {
     font-size: calc(3px + 1vmin);
+    width: 100%;
   } 
 
   @media (max-width: 480px) {
@@ -42,8 +42,9 @@
       margin-top: 10vh
     }
     pre {
-      font-size: calc(2vmin);
-      text-align: left;
+      font-size: calc(1px + 1vmin);
+      text-align: center;
+      width: 100%;
     }
   }
 
