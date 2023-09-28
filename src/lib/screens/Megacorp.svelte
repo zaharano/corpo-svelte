@@ -29,7 +29,7 @@
     align-items: center;
     height: 108%;
     transform: scale(1.2);
-    font-family:monospace;
+    font-family: 'Source Code Pro', monospace;
   }
 
   pre {
