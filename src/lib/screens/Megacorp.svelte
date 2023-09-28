@@ -12,7 +12,7 @@
 ██║╚██╔╝██║██╔══╝  ██║   ██║██╔══██║██║     ██║   ██║██╔══██╗██╔═══╝ 
 ██║ ╚═╝ ██║███████╗╚██████╔╝██║  ██║╚██████╗╚██████╔╝██║  ██║██║     
 ╚═╝     ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝     
-                                                             
+                                                                     
   </pre>
   <nav class="menu">
     <Button clickHandler={initGame} text={'PUNCH IN'}/>
@@ -25,15 +25,15 @@
   .container {
     display: flex;
     flex-direction: column;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
     height: 108%;
     transform: scale(1.2);
-    font-family: monospace;
+    font-family:monospace;
   }
 
   pre {
     font-size: calc(3px + 1vmin);
-    width: 100%;
   } 
 
   @media (max-width: 480px) {
@@ -44,7 +44,6 @@
     pre {
       font-size: calc(1px + 1vmin);
       text-align: center;
-      width: 100%;
     }
   }
 
